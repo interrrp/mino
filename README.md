@@ -3,6 +3,14 @@
 > Built upon `mineflayer`, qBot is written in
 > [TypeScript](https://www.typescriptlang.org/) with a well-documented codebase
 
+## 🔥 Prerequisites
+
+This project depends on some software, notably:
+
+- [Node.js](https://nodejs.org)
+- [PNPM](https://pnpm.io/)
+  > To install `pnpm`, simply do `npm i -g pnpm`
+
 ## ⬆️ Usage
 
 To give qBot a try, clone this repository, adjust the
