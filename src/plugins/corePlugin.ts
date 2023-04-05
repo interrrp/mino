@@ -59,15 +59,13 @@ async function handleKick(
     logger.error(`Kicked from server: "${reason}"`);
   }
 
-  await reconnectOnKick(bot);
+  await reconnectOnKick();
 }
 
 /**
  * Reconnects the bot if the bot gets kicked.
- *
- * @param bot The bot.
  */
-async function reconnectOnKick(bot: Bot): Promise<void> {
+async function reconnectOnKick(): Promise<void> {
   const reconnectOnKick = config.plugins.core.reconnectOnKick;
   if (reconnectOnKick.enabled) {
     logger.info(`Reconnecting in ${reconnectOnKick.delay}ms`);
