@@ -5,8 +5,8 @@
 
 import mineflayer from "mineflayer";
 
-import PvpPlugin from "./plugins/pvp/PvpPlugin";
-import CommandsPlugin from "./plugins/commands/CommandsPlugin";
+import PvpPlugin from "../src/plugins/pvp/PvpPlugin";
+import CommandsPlugin from "../src/plugins/commands/CommandsPlugin";
 
 declare module "mineflayer" {
   interface Bot {

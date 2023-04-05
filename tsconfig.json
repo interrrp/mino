@@ -1,6 +1,10 @@
 {
   "extends": "@tsconfig/node18",
+  "include": ["src", "typings"],
   "compilerOptions": {
     "resolveJsonModule": true
+  },
+  "ts-node": {
+    "files": true
   }
 }
