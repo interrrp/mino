@@ -26,4 +26,4 @@ follow:
 
 - Code must work (please, this should be common sense.)
 - All functions should be documented
-- Format your code using `prettier`
+- Format your code using [Prettier](https://prettier.io/)
