@@ -4,8 +4,8 @@ import { Bot } from "mineflayer";
  * The base class for all commands.
  */
 export default abstract class Command {
-  name: string = "";
-  description: string = "";
+  abstract readonly name: string;
+  abstract readonly description: string;
 
   protected bot: Bot;
 
