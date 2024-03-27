@@ -17,11 +17,9 @@ import { sleep } from "../utils/common";
  * @param bot The bot.
  */
 export default function corePlugin(bot: Bot): void {
-  fixWhisper(bot);
   loadPathfinderMovements(bot);
 
   bot.once("spawn", handleSpawn);
-
   bot.on("kicked", async (reason) => await handleKick(bot, reason));
 }
 
@@ -63,17 +61,4 @@ async function reconnectOnKick(): Promise<void> {
 function loadPathfinderMovements(bot: Bot): void {
   const movements = new Movements(bot);
   bot.pathfinder.setMovements(movements);
-}
-
-/**
- * Fix the whisper command, since on newer versions of Minecraft, the `/tell`
- * command is no longer available. This uses `/w` instead.
- *
- * @param bot The bot.
- */
-function fixWhisper(bot: Bot): void {
-  // TODO: PR this to Mineflayer
-  bot.whisper = (username: string, message: string) => {
-    bot.chat(`/w ${username} ${message}`);
-  };
 }
