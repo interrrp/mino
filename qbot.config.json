@@ -29,7 +29,9 @@
     "pvp": {
       "reach": 3.0,
       "followRange": 3,
-      "attackCooldown": 15
+      "attackCooldown": 15,
+      "winMessages": ["gg", "Try better next time"],
+      "lossMessages": ["gg", "I'll do better next time..."]
     },
 
     "commands": {

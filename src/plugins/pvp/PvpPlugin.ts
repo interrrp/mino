@@ -4,6 +4,8 @@ import { Bot } from "mineflayer";
 import { goals } from "mineflayer-pathfinder";
 import { Entity } from "prismarine-entity";
 
+import { randomItem } from "../../utils/common";
+
 /**
  * This plugin is used to add PvP functionality to the bot.
  */
@@ -102,6 +104,7 @@ export default class PvpPlugin {
   private handleEntityDead(entity: Entity): void {
     if (entity === this.bot.entity) {
       this.stopFighting();
+      this.bot.chat(randomItem(config.plugins.pvp.lossMessages));
       return;
     }
 
@@ -115,6 +118,7 @@ export default class PvpPlugin {
 
     if (this.currentTarget === null || this.targets.length === 0) {
       this.stopFighting();
+      this.bot.chat(randomItem(config.plugins.pvp.winMessages));
     }
   }
 
