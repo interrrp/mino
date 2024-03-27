@@ -30,13 +30,7 @@ export default async function startBot(): Promise<Bot> {
   bot.on("error", handleError);
 
   logger.info("Loading plugins");
-  bot.loadPlugins([
-    pathfinderPlugin,
-    corePlugin,
-    commandsPlugin,
-    pvpPlugin,
-    autoArmorPlugin,
-  ]);
+  bot.loadPlugins([pathfinderPlugin, corePlugin, commandsPlugin, pvpPlugin, autoArmorPlugin]);
 
   return bot;
 }

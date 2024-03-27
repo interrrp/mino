@@ -67,26 +67,18 @@ export default class PvpPlugin {
     this.setCurrentTargetBasedOnDistance();
 
     const target = this.currentTarget;
-    const distanceToTarget = this.bot.entity.position.distanceTo(
-      target.position
-    );
+    const distanceToTarget = this.bot.entity.position.distanceTo(target.position);
 
     if (!this.bot.pathfinder.goal) {
       this.setGoalToTarget();
     }
 
-    if (
-      this.bot.pathfinder.goal instanceof goals.GoalFollow &&
-      this.bot.pathfinder.goal.entity !== target
-    ) {
+    if (this.bot.pathfinder.goal instanceof goals.GoalFollow && this.bot.pathfinder.goal.entity !== target) {
       this.setGoalToTarget();
     }
 
     if (distanceToTarget <= config.plugins.pvp.reach) {
-      this.bot.lookAt(
-        this.currentTarget.position.offset(0, target.height, 0),
-        true
-      );
+      this.bot.lookAt(this.currentTarget.position.offset(0, target.height, 0), true);
 
       if (this.attackCooldown <= 0) {
         if (this.hasShield()) {
@@ -146,9 +138,7 @@ export default class PvpPlugin {
   private setGoalToTarget(): void {
     if (!this.currentTarget) return;
 
-    this.bot.pathfinder.setGoal(
-      new goals.GoalFollow(this.currentTarget, config.plugins.pvp.followRange)
-    );
+    this.bot.pathfinder.setGoal(new goals.GoalFollow(this.currentTarget, config.plugins.pvp.followRange));
   }
 
   private hasShield(): boolean {

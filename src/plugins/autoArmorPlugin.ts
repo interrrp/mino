@@ -14,17 +14,10 @@ import config from "../../qbot.config.json";
 export default function autoArmorPlugin(bot: Bot): void {
   if (!config.plugins.autoArmor.enabled) return;
 
-  bot.on(
-    "playerCollect",
-    async (collector, item) => await handlePlayerCollect(bot, collector, item)
-  );
+  bot.on("playerCollect", async (collector, item) => await handlePlayerCollect(bot, collector, item));
 }
 
-async function handlePlayerCollect(
-  bot: Bot,
-  collector: Entity,
-  item: Entity
-): Promise<void> {
+async function handlePlayerCollect(bot: Bot, collector: Entity, item: Entity): Promise<void> {
   if (collector !== bot.entity) return;
 
   // The last object in the metadata array is the item stack.
@@ -50,12 +43,7 @@ async function activateItem(bot: Bot, itemId: number): Promise<void> {
 }
 
 function isArmorItem(name: string): boolean {
-  return (
-    name.includes("helmet") ||
-    name.includes("chestplate") ||
-    name.includes("leggings") ||
-    name.includes("boots")
-  );
+  return name.includes("helmet") || name.includes("chestplate") || name.includes("leggings") || name.includes("boots");
 }
 
 function isShield(name: string): boolean {

@@ -18,6 +18,6 @@ export async function sleep(ms: number): Promise<void> {
  * @param arr The array to get a random item from.
  * @returns A random item from the array.
  */
-export function randomItem(arr: any[]): any {
+export function randomItem<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }

@@ -15,11 +15,7 @@ import { Bot, Player } from "mineflayer";
  * @param reference The string reference to the player.
  * @returns The player, or null if it doesn't exist.
  */
-export function findPlayer(
-  bot: Bot,
-  sender: string,
-  reference: string
-): Player | null {
+export function findPlayer(bot: Bot, sender: string, reference: string): Player | null {
   if (reference === "me") {
     return bot.players[sender];
   } else if (reference === "you") {
@@ -31,9 +27,7 @@ export function findPlayer(
     return player;
   }
 
-  const players = Object.values(bot.players).filter((p) =>
-    p.username.toLowerCase().includes(reference.toLowerCase())
-  );
+  const players = Object.values(bot.players).filter((p) => p.username.toLowerCase().includes(reference.toLowerCase()));
   if (players.length === 1) {
     return players[0];
   }

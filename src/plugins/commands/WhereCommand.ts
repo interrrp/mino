@@ -6,9 +6,6 @@ export default class WhereCommand extends Command {
 
   execute(args: string[], sender: string): void {
     const pos = this.bot.entity.position;
-    this.bot.whisper(
-      sender,
-      `I am at ${Math.round(pos.x)} ${Math.round(pos.y)} ${Math.round(pos.z)}`
-    );
+    this.bot.whisper(sender, `I am at ${Math.round(pos.x)} ${Math.round(pos.y)} ${Math.round(pos.z)}`);
   }
 }

@@ -13,8 +13,6 @@ export default class GoToCommand extends Command {
     const target = findPlayer(this.bot, sender, args[0] ?? "");
     if (!target || !target.entity) return;
 
-    this.bot.pathfinder.setGoal(
-      new goals.GoalFollow(target.entity, config.plugins.commands.goTo.range)
-    );
+    this.bot.pathfinder.setGoal(new goals.GoalFollow(target.entity, config.plugins.commands.goTo.range));
   }
 }
