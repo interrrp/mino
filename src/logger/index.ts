@@ -12,7 +12,7 @@ import chalk from "chalk";
  * @param message The message to log.
  */
 function log(prefix: string, color: chalk.Chalk, message: string) {
-  console.log(`[${color(prefix)}] ${message}`);
+  console.log(`${color(prefix)} ${message}`);
 }
 
 /**
