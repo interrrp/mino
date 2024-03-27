@@ -34,4 +34,5 @@ follow:
 
 - Code must work (please, this should be common sense.)
 - All functions should be documented
-- Format your code using [Prettier](https://prettier.io/)
+- Lint your code using [ESLint](https://eslint.org) (`pnpm exec eslint .`)
+- Format your code using [Prettier](https://prettier.io/) (`pnpm exec prettier --write .`)
