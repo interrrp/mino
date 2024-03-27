@@ -25,9 +25,9 @@ export default class CommandManager extends Manager<Command> {
    * Finds a command by its name.
    *
    * @param name The name of the command.
-   * @returns The command with the specified name, or null if it doesn't exist.
+   * @returns The command with the specified name, or `undefined` if it doesn't exist.
    */
-  findCommandByName(name: string): Command | null {
-    return this.items.find((c) => c.name === name) ?? null;
+  findCommandByName(name: string): Command | undefined {
+    return this.items.find((c) => c.name === name);
   }
 }

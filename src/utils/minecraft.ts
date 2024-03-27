@@ -13,9 +13,9 @@ import { Bot, Player } from "mineflayer";
  * @param bot The bot.
  * @param sender The username of the sender.
  * @param reference The string reference to the player.
- * @returns The player, or null if it doesn't exist.
+ * @returns The player, or `undefined` if it doesn't exist.
  */
-export function findPlayer(bot: Bot, sender: string, reference: string): Player | null {
+export function findPlayer(bot: Bot, sender: string, reference: string): Player | undefined {
   if (reference === "me") {
     return bot.players[sender];
   } else if (reference === "you") {
