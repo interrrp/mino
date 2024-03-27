@@ -57,11 +57,11 @@ export default class PvpPlugin {
   }
 
   private registerEvents(): void {
-    this.bot.on("physicTick", this.handlePhysicTick.bind(this));
+    this.bot.on("physicsTick", this.handlePhysicsTick.bind(this));
     this.bot.on("entityDead", this.handleEntityDead.bind(this));
   }
 
-  private async handlePhysicTick(): Promise<void> {
+  private async handlePhysicsTick(): Promise<void> {
     if (!this.targets || !this.currentTarget) return;
 
     this.setCurrentTargetBasedOnDistance();
