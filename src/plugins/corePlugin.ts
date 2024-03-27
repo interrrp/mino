@@ -22,7 +22,7 @@ export default function corePlugin(bot: Bot): void {
 
   bot.once("spawn", handleSpawn);
 
-  bot.on("kicked", async (reason, loggedIn) => await handleKick(bot, reason, loggedIn));
+  bot.on("kicked", async (reason) => await handleKick(bot, reason));
 }
 
 function handleSpawn(): void {
@@ -36,7 +36,7 @@ function handleSpawn(): void {
  * @param reason The reason for the kick.
  * @param loggedIn Whether the bot was logged in when kicked.
  */
-async function handleKick(bot: Bot, reason: string, loggedIn: boolean): Promise<void> {
+async function handleKick(bot: Bot, reason: string): Promise<void> {
   // The reason is actually a JSON string that contains the reason in the "text"
   // property. This parses the JSON string and gets the "text" property.
   reason = JSON.parse(reason).text;

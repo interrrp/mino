@@ -21,10 +21,10 @@ async function handlePlayerCollect(bot: Bot, collector: Entity, item: Entity): P
   if (collector !== bot.entity) return;
 
   // The last object in the metadata array is the item stack.
-  const itemStack = item.metadata[item.metadata.length - 1];
+  const itemStack = item.metadata[item.metadata.length - 1] as { itemId: number } | undefined;
   if (!itemStack) return;
 
-  const itemId = (itemStack as any).itemId as number;
+  const itemId = itemStack.itemId;
   const itemName = minecraftData(bot.version).items[itemId].name;
 
   // Let things register, so we wait for a short period of time.

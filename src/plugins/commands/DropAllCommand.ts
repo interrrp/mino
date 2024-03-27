@@ -7,7 +7,7 @@ export default class DropAllCommand extends Command {
   name: string = "drop-all";
   description: string = "Drops all items in the inventory.";
 
-  async execute(args: string[], sender: string): Promise<void> {
+  async execute(): Promise<void> {
     for (const item in this.bot.inventory.slots) {
       const itemStack = this.bot.inventory.slots[item];
       if (itemStack) {
