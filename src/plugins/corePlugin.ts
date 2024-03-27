@@ -53,9 +53,9 @@ async function handleKick(bot: Bot, reason: CompoundText | string): Promise<void
   }
 
   if (!reason) {
-    logger.error("Kicked from server for no reason");
+    logger.warn("Kicked from server for no reason");
   } else {
-    logger.error(`Kicked from server: "${reason}"`);
+    logger.warn(`Kicked from server: "${reason}"`);
   }
 
   await reconnectOnKick();
