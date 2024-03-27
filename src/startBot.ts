@@ -12,9 +12,6 @@ import logger from "./logger";
 
 import config from "../qbot.config.json";
 
-/**
- * Starts the bot.
- */
 export default async function startBot(): Promise<Bot> {
   const options = {
     username: config.bot.username,
@@ -29,8 +26,6 @@ export default async function startBot(): Promise<Bot> {
   const bot = createBot(options);
   bot.options = options;
 
-  // Error handler is registered here and not in the core plugin/other plugins
-  // because the error handler needs to be registered before any other plugins
   logger.info("Registering error handler");
   bot.on("error", handleError);
 

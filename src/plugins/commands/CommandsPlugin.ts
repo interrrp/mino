@@ -11,47 +11,25 @@ import FlirtCommand from "./FlirtCommand";
 
 import config from "../../../qbot.config.json";
 
-/**
- * This plugin adds a command system to the bot.
- */
 export default class CommandsPlugin {
-  /**
-   * The command manager.
-   */
   commandManager: CommandManager;
 
-  /**
-   * The bot.
-   */
   private bot: Bot;
 
-  /**
-   * Creates a new instance of the plugin.
-   *
-   * @param bot The bot.
-   */
   constructor(bot: Bot) {
     this.bot = bot;
     this.bot.commands = this;
 
     this.commandManager = new CommandManager(bot);
 
-    this.registerEventHandler();
+    this.registerChatHandler();
     this.registerAllCommands();
   }
 
-  /**
-   * Registers the plugin to the bot.
-   *
-   * @param bot The bot.
-   */
   static register(bot: Bot): void {
     new CommandsPlugin(bot);
   }
 
-  /**
-   * Registers all commands.
-   */
   private registerAllCommands(): void {
     this.commandManager.addCommand(GreetCommand);
     this.commandManager.addCommand(FightCommand);
@@ -62,11 +40,7 @@ export default class CommandsPlugin {
     this.commandManager.addCommand(FlirtCommand);
   }
 
-  /**
-   * Registers the chat event handler to the bot, since commands are executed
-   * through chat.
-   */
-  private registerEventHandler(): void {
+  private registerChatHandler(): void {
     const handler = (username: string, message: string) => {
       if (username === this.bot.username) {
         return;

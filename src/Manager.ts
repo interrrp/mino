@@ -2,22 +2,12 @@
  * Abstract class for managing a collection of items.
  */
 export default abstract class Manager<T> {
-  /**
-   * The array of items.
-   */
   items: T[];
 
-  /**
-   * Initializes a manager. `items` is initialized to an empty array.
-   */
   constructor() {
     this.items = [];
   }
 
-  /**
-   * Adds an item.
-   * @param item The item to add.
-   */
   add(item: T): void {
     this.items.push(item);
   }

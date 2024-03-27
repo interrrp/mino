@@ -28,9 +28,6 @@ export default function corePlugin(bot: Bot): void {
   );
 }
 
-/**
- * Handles when the bot spawns in.
- */
 function handleSpawn(): void {
   logger.info("Spawned");
 }
@@ -60,9 +57,6 @@ async function handleKick(
   await reconnectOnKick();
 }
 
-/**
- * Reconnects the bot if the bot gets kicked.
- */
 async function reconnectOnKick(): Promise<void> {
   const reconnectOnKick = config.plugins.core.reconnectOnKick;
   if (reconnectOnKick.enabled) {
@@ -73,11 +67,6 @@ async function reconnectOnKick(): Promise<void> {
   }
 }
 
-/**
- * Loads the pathfinder movements.
- *
- * @param bot The bot.
- */
 function loadPathfinderMovements(bot: Bot): void {
   const movements = new Movements(bot);
   bot.pathfinder.setMovements(movements);

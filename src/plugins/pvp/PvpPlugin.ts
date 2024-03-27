@@ -9,9 +9,6 @@ import config from "../../../qbot.config.json";
  * This plugin is used to add PvP functionality to the bot.
  */
 export default class PvpPlugin {
-  /**
-   * The bot.
-   */
   private bot: Bot;
 
   /**
@@ -19,21 +16,9 @@ export default class PvpPlugin {
    */
   private attackCooldown: number;
 
-  /**
-   * The entities that the bot is fighting.
-   */
   targets: Entity[] = [];
-
-  /**
-   * The entity that the bot is currently fighting.
-   */
   currentTarget: Entity | null;
 
-  /**
-   * Creates a new instance of the plugin.
-   *
-   * @param bot The bot.
-   */
   constructor(bot: Bot) {
     this.bot = bot;
     this.bot.pvp = this;
@@ -44,20 +29,10 @@ export default class PvpPlugin {
     this.registerEvents();
   }
 
-  /**
-   * Registers the plugin to a bot.
-   *
-   * @param bot The bot.
-   */
   static register(bot: Bot): void {
     new PvpPlugin(bot);
   }
 
-  /**
-   * Starts fighting the specified entity.
-   *
-   * @param entity The entity/entities to fight.
-   */
   async fight(target: Entity | Entity[]): Promise<void> {
     if (Array.isArray(target)) {
       this.targets = target;
@@ -81,17 +56,11 @@ export default class PvpPlugin {
     this.bot.pathfinder.setGoal(null);
   }
 
-  /**
-   * Register events to the bot.
-   */
   private registerEvents(): void {
     this.bot.on("physicTick", this.handlePhysicTick.bind(this));
     this.bot.on("entityDead", this.handleEntityDead.bind(this));
   }
 
-  /**
-   * Handles when the physic tick event is fired.
-   */
   private async handlePhysicTick(): Promise<void> {
     if (!this.targets || !this.currentTarget) return;
 
@@ -139,11 +108,6 @@ export default class PvpPlugin {
     }
   }
 
-  /**
-   * Handles when an entity dies.
-   *
-   * @param entity The entity that died.
-   */
   private handleEntityDead(entity: Entity): void {
     if (entity === this.bot.entity) {
       this.stopFighting();
@@ -163,9 +127,6 @@ export default class PvpPlugin {
     }
   }
 
-  /**
-   * Sets the current target to the closest entity in the `targets` array.
-   */
   private setCurrentTargetBasedOnDistance(): void {
     let closestTarget: Entity | null = null;
     let closestDistance: number = 0;
@@ -182,9 +143,6 @@ export default class PvpPlugin {
     this.currentTarget = closestTarget;
   }
 
-  /**
-   * Sets the goal to the current target.
-   */
   private setGoalToTarget(): void {
     if (!this.currentTarget) return;
 
@@ -193,11 +151,6 @@ export default class PvpPlugin {
     );
   }
 
-  /**
-   * Checks if the bot has a shield in its offhand.
-   *
-   * @returns True if the bot has a shield in its offhand, false otherwise.
-   */
   private hasShield(): boolean {
     const offhandItem = this.bot.inventory.slots[45];
     if (!offhandItem) return false;
@@ -205,9 +158,6 @@ export default class PvpPlugin {
     return offhandItem.name.includes("shield");
   }
 
-  /**
-   * Equips the bot with a sword.
-   */
   private async equipWeapon(): Promise<void> {
     const weapon = this.bot.inventory.items().find((item) => {
       return item.name.includes("sword");

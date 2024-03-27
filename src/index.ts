@@ -4,9 +4,6 @@ import startBot from "./startBot";
 
 import config from "../qbot.config.json";
 
-/**
- * Starts the program.
- */
 async function main() {
   console.clear();
   printBanner();
@@ -14,9 +11,6 @@ async function main() {
   await startBot();
 }
 
-/**
- * Prints the banner.
- */
 function printBanner(): void {
   const name = chalk.blue("qBot");
   const on = chalk.gray("on");

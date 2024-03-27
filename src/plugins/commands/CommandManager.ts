@@ -2,20 +2,9 @@ import { Bot } from "mineflayer";
 import Manager from "../../Manager";
 import Command from "./Command";
 
-/**
- * Manages commands.
- */
 export default class CommandManager extends Manager<Command> {
-  /**
-   * The bot.
-   */
   private bot: Bot;
 
-  /**
-   * Creates a new instance of the command manager.
-   *
-   * @param bot The bot.
-   */
   constructor(bot: Bot) {
     super();
 
@@ -23,8 +12,7 @@ export default class CommandManager extends Manager<Command> {
   }
 
   /**
-   * Adds a command to the manager. There is no need to instantiate the command,
-   * simply pass the class.
+   * Adds a command to the manager. Pass the class instead of instantiating the command yourself.
    *
    * @param command The command type to add.
    */

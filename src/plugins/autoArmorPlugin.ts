@@ -20,12 +20,6 @@ export default function autoArmorPlugin(bot: Bot): void {
   );
 }
 
-/**
- * Handles when a player collects an item.
- *
- * @param collector The entity that collected the item.
- * @param item The item entity that was collected.
- */
 async function handlePlayerCollect(
   bot: Bot,
   collector: Entity,
@@ -43,31 +37,19 @@ async function handlePlayerCollect(
   // Let things register, so we wait for a short period of time.
   await sleep(config.plugins.autoArmor.equipDelay);
 
-  if (isItemArmor(itemName)) {
+  if (isArmorItem(itemName)) {
     await activateItem(bot, itemId);
-  } else if (isItemShield(itemName)) {
+  } else if (isShield(itemName)) {
     await bot.equip(itemId, "off-hand");
   }
 }
 
-/**
- * Activates an item. This is essentially the same as right clicking with the
- * item.
- *
- * @param itemId The ID of the item.
- */
 async function activateItem(bot: Bot, itemId: number): Promise<void> {
   await bot.equip(itemId, "hand");
   bot.activateItem();
 }
 
-/**
- * Checks if an item is armor.
- *
- * @param name The name of the item.
- * @returns Whether the item is armor.
- */
-function isItemArmor(name: string): boolean {
+function isArmorItem(name: string): boolean {
   return (
     name.includes("helmet") ||
     name.includes("chestplate") ||
@@ -76,12 +58,6 @@ function isItemArmor(name: string): boolean {
   );
 }
 
-/**
- * Checks if an item is a shield.
- *
- * @param name The name of the item.
- * @returns Whether the item is a shield.
- */
-function isItemShield(name: string): boolean {
+function isShield(name: string): boolean {
   return name.includes("shield");
 }
