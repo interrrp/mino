@@ -102,6 +102,8 @@ export default class PvpPlugin {
   }
 
   private handleEntityDead(entity: Entity): void {
+    if (!this.currentTarget) return;
+
     if (entity === this.bot.entity) {
       this.stopFighting();
       this.bot.chat(randomItem(config.plugins.pvp.lossMessages));
