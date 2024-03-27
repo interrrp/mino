@@ -8,6 +8,7 @@ import DropAllCommand from "./DropAllCommand";
 import GoToCommand from "./GoToCommand";
 import WhereCommand from "./WhereCommand";
 import FlirtCommand from "./FlirtCommand";
+import SayCommand from "./SayCommand";
 
 import config from "../../../qbot.config.json";
 
@@ -38,6 +39,7 @@ export default class CommandsPlugin {
     this.commandManager.addCommand(GoToCommand);
     this.commandManager.addCommand(WhereCommand);
     this.commandManager.addCommand(FlirtCommand);
+    this.commandManager.addCommand(SayCommand);
   }
 
   private registerChatHandler(): void {
