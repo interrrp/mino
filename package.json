@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
+    "build": "tsc",
     "start": "ts-node .",
     "dev": "ts-node-dev --respawn --transpile-only ."
   },
@@ -11,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.3",
     "@types/node": "^20.11.30",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",

@@ -1,13 +1,11 @@
 import { Bot } from "mineflayer";
 import { Movements } from "mineflayer-pathfinder";
 
-import MinecraftData from "minecraft-data";
-
 import logger from "../logger";
 
 import config from "../../qbot.config.json";
-import { sleep } from "../utils/common";
 import startBot from "../startBot";
+import { sleep } from "../utils/common";
 
 /**
  * This plugin is used to handle events that are not specific to any other
@@ -81,7 +79,7 @@ async function reconnectOnKick(): Promise<void> {
  * @param bot The bot.
  */
 function loadPathfinderMovements(bot: Bot): void {
-  const movements = new Movements(bot, MinecraftData(bot.version));
+  const movements = new Movements(bot);
   bot.pathfinder.setMovements(movements);
 }
 

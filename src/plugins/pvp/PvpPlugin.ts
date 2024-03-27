@@ -4,7 +4,6 @@ import { Entity } from "prismarine-entity";
 import { goals } from "mineflayer-pathfinder";
 
 import config from "../../../qbot.config.json";
-import { sleep } from "../../utils/common";
 
 /**
  * This plugin is used to add PvP functionality to the bot.

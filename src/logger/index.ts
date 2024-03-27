@@ -2,7 +2,7 @@
  * @file Contains functions for logging messages to the console.
  */
 
-import chalk from "chalk";
+import chalk, { ChalkInstance } from "chalk";
 
 /**
  * Logs a message to the console. Logging functions are typically just a wrapper
@@ -12,7 +12,7 @@ import chalk from "chalk";
  * @param color The color of the prefix.
  * @param message The message to log.
  */
-function log(prefix: string, color: chalk.Chalk, message: string) {
+function log(prefix: string, color: ChalkInstance, message: string) {
   console.log(`[${color(prefix)}] ${message}`);
 }
 

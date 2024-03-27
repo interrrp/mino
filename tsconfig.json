@@ -1,6 +1,10 @@
 {
-  "extends": "@tsconfig/node18",
   "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "strict": true,
+    "esModuleInterop": true,
     "resolveJsonModule": true
   },
   "ts-node": {

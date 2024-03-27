@@ -22,9 +22,6 @@ dependencies:
     version: 2.4.0
 
 devDependencies:
-  '@tsconfig/node18':
-    specifier: ^18.2.3
-    version: 18.2.3
   '@types/node':
     specifier: ^20.11.30
     version: 20.11.30
@@ -91,10 +88,6 @@ packages:
 
   /@tsconfig/node16@1.0.4:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
-    dev: true
-
-  /@tsconfig/node18@18.2.3:
-    resolution: {integrity: sha512-5GKTU9bfn4L37G9IdK8wcHfvyMijzw1uKNCd2Rs75V7fZK/l2OjGJ8Aa2myqNnESjekm/udpCnFH9qR9yPCtmw==}
     dev: true
 
   /@types/node@20.11.30:
