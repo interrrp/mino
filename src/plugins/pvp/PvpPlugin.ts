@@ -6,6 +6,8 @@ import { Entity } from "prismarine-entity";
 
 import { randomItem } from "../../utils/common";
 
+const PVP_CONFIG = config.plugins.pvp;
+
 /**
  * This plugin is used to add PvP functionality to the bot.
  */
@@ -78,7 +80,7 @@ export default class PvpPlugin {
       this.setGoalToTarget();
     }
 
-    if (distanceToTarget <= config.plugins.pvp.reach) {
+    if (distanceToTarget <= PVP_CONFIG.reach) {
       this.bot.lookAt(this.currentTarget.position.offset(0, target.height, 0), true);
 
       if (this.attackCooldown <= 0) {
@@ -89,7 +91,7 @@ export default class PvpPlugin {
 
         this.bot.setControlState("jump", true);
         this.bot.attack(this.currentTarget);
-        this.attackCooldown = config.plugins.pvp.attackCooldown;
+        this.attackCooldown = PVP_CONFIG.attackCooldown;
         this.bot.setControlState("jump", false);
       } else {
         this.attackCooldown -= 1;
@@ -106,7 +108,7 @@ export default class PvpPlugin {
 
     if (entity === this.bot.entity) {
       this.stopFighting();
-      this.bot.chat(randomItem(config.plugins.pvp.lossMessages));
+      if (PVP_CONFIG.messages.enabled) this.bot.chat(randomItem(PVP_CONFIG.messages.loss));
       return;
     }
 
@@ -120,7 +122,7 @@ export default class PvpPlugin {
 
     if (this.currentTarget === null || this.targets.length === 0) {
       this.stopFighting();
-      this.bot.chat(randomItem(config.plugins.pvp.winMessages));
+      if (PVP_CONFIG.messages.enabled) this.bot.chat(randomItem(PVP_CONFIG.messages.win));
     }
   }
 
@@ -143,7 +145,7 @@ export default class PvpPlugin {
   private setGoalToTarget(): void {
     if (!this.currentTarget) return;
 
-    this.bot.pathfinder.setGoal(new goals.GoalFollow(this.currentTarget, config.plugins.pvp.followRange));
+    this.bot.pathfinder.setGoal(new goals.GoalFollow(this.currentTarget, PVP_CONFIG.followRange));
   }
 
   private hasShield(): boolean {
