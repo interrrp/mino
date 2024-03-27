@@ -1,4 +1,5 @@
 import { Bot } from "mineflayer";
+
 import CommandsPlugin from "./CommandsPlugin";
 
 /**

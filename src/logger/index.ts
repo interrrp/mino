@@ -1,7 +1,6 @@
 /**
  * @file Contains functions for logging messages to the console.
  */
-
 import chalk from "chalk";
 
 /**

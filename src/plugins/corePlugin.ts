@@ -1,9 +1,9 @@
+import config from "../../qbot.config.json";
+
 import { Bot } from "mineflayer";
 import { Movements } from "mineflayer-pathfinder";
 
 import logger from "../logger";
-
-import config from "../../qbot.config.json";
 import startBot from "../startBot";
 import { sleep } from "../utils/common";
 

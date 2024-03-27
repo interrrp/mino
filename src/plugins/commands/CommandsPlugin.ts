@@ -1,16 +1,16 @@
+import config from "../../../qbot.config.json";
+
 import { Bot } from "mineflayer";
 
 import CommandManager from "./CommandManager";
-import GreetCommand from "./GreetCommand";
-import FightCommand from "./FightCommand";
-import UnfightCommand from "./UnfightCommand";
 import DropAllCommand from "./DropAllCommand";
-import GoToCommand from "./GoToCommand";
-import WhereCommand from "./WhereCommand";
+import FightCommand from "./FightCommand";
 import FlirtCommand from "./FlirtCommand";
+import GoToCommand from "./GoToCommand";
+import GreetCommand from "./GreetCommand";
 import SayCommand from "./SayCommand";
-
-import config from "../../../qbot.config.json";
+import UnfightCommand from "./UnfightCommand";
+import WhereCommand from "./WhereCommand";
 
 export default class CommandsPlugin {
   commandManager: CommandManager;

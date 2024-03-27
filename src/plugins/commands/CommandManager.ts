@@ -1,4 +1,5 @@
 import { Bot } from "mineflayer";
+
 import Manager from "../../Manager";
 import Command from "./Command";
 

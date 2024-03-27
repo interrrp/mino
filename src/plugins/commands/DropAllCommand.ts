@@ -1,7 +1,7 @@
-import Command from "./Command";
-import { sleep } from "../../utils/common";
-
 import config from "../../../qbot.config.json";
+
+import { sleep } from "../../utils/common";
+import Command from "./Command";
 
 export default class DropAllCommand extends Command {
   name: string = "drop-all";

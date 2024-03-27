@@ -1,10 +1,10 @@
+import config from "../../qbot.config.json";
+
+import minecraftData from "minecraft-data";
 import { Bot } from "mineflayer";
 import { Entity } from "prismarine-entity";
-import minecraftData from "minecraft-data";
 
 import { sleep } from "../utils/common";
-
-import config from "../../qbot.config.json";
 
 /**
  * This plugin automatically equips armor when it is given to the bot.

@@ -1,9 +1,8 @@
-import Command from "./Command";
-
-import { findPlayer } from "../../utils/minecraft";
-
 import config from "../../../qbot.config.json";
+
 import { randomItem } from "../../utils/common";
+import { findPlayer } from "../../utils/minecraft";
+import Command from "./Command";
 
 export default class FlirtCommand extends Command {
   name: string = "flirt";

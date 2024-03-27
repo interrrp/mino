@@ -1,9 +1,9 @@
+import config from "../../../qbot.config.json";
+
 import { goals } from "mineflayer-pathfinder";
 
-import Command from "./Command";
 import { findPlayer } from "../../utils/minecraft";
-
-import config from "../../../qbot.config.json";
+import Command from "./Command";
 
 export default class GoToCommand extends Command {
   name: string = "go-to";
