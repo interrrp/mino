@@ -28,16 +28,29 @@ function handleSpawn(): void {
 }
 
 /**
+ * Compound text type for the kick reason.
+ */
+interface CompoundText {
+  type: "compound";
+  value: {
+    translate: {
+      type: "string";
+      value: string;
+    };
+  };
+}
+
+/**
  * Handles when the bot gets kicked.
  *
  * @param bot The bot.
  * @param reason The reason for the kick.
  * @param loggedIn Whether the bot was logged in when kicked.
  */
-async function handleKick(bot: Bot, reason: string): Promise<void> {
-  // The reason is actually a JSON string that contains the reason in the "text"
-  // property. This parses the JSON string and gets the "text" property.
-  reason = JSON.parse(reason).text;
+async function handleKick(bot: Bot, reason: CompoundText | string): Promise<void> {
+  if (typeof reason !== "string") {
+    reason = reason.value.translate.value;
+  }
 
   if (!reason) {
     logger.error("Kicked from server for no reason");
