@@ -19,12 +19,12 @@ import { sleep } from "../utils/common";
 export default function corePlugin(bot: Bot): void {
   loadPathfinderMovements(bot);
 
-  bot.once("spawn", handleSpawn);
+  bot.once("spawn", () => handleSpawn(bot));
   bot.on("kicked", async (reason) => await handleKick(bot, reason));
 }
 
-function handleSpawn(): void {
-  logger.info("Spawned");
+function handleSpawn(bot: Bot): void {
+  logger.info(`Spawned at ${bot.entity.position.rounded()}`);
 }
 
 // prettier-ignore
