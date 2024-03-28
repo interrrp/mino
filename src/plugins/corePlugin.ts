@@ -27,18 +27,11 @@ function handleSpawn(): void {
   logger.info("Spawned");
 }
 
-/**
- * Compound text type for the kick reason.
- */
-interface CompoundText {
-  type: "compound";
-  value: {
-    translate: {
-      type: "string";
-      value: string;
-    };
-  };
-}
+// prettier-ignore
+type KickReason =
+  | { type: "string"; value: string }
+  | { type: "compound"; value: { translate: { type: "string", value: string } } }
+  | string;
 
 /**
  * Handles when the bot gets kicked.
@@ -47,9 +40,9 @@ interface CompoundText {
  * @param reason The reason for the kick.
  * @param loggedIn Whether the bot was logged in when kicked.
  */
-async function handleKick(bot: Bot, reason: CompoundText | string): Promise<void> {
+async function handleKick(bot: Bot, reason: KickReason): Promise<void> {
   if (typeof reason !== "string") {
-    reason = reason.value.translate.value;
+    reason = reason.type === "compound" ? reason.value.translate.value : reason.value;
   }
 
   if (!reason) {
