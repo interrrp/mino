@@ -2,8 +2,8 @@ import { findPlayer } from "../../utils/minecraft";
 import Command from "./Command";
 
 export default class UnfightCommand extends Command {
-  name: string = "unfight";
-  description: string = "Stops fighting.";
+  name = "unfight";
+  description = "Stops fighting.";
 
   execute(args: string[], sender: string): void {
     const player = findPlayer(this.bot, sender, args[0] ?? "");

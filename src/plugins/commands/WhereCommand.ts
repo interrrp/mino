@@ -1,8 +1,8 @@
 import Command from "./Command";
 
 export default class WhereCommand extends Command {
-  name: string = "where";
-  description: string = "Tells you where the bot is.";
+  name = "where";
+  description = "Tells you where the bot is.";
 
   execute(args: string[], sender: string): void {
     const pos = this.bot.entity.position;

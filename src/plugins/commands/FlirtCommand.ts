@@ -5,8 +5,8 @@ import { findPlayer } from "../../utils/minecraft";
 import Command from "./Command";
 
 export default class FlirtCommand extends Command {
-  name: string = "flirt";
-  description: string = "Flirt with a player.";
+  name = "flirt";
+  description = "Flirt with a player.";
 
   execute(args: string[], sender: string): void {
     const player = findPlayer(this.bot, sender, args[0] ?? "");

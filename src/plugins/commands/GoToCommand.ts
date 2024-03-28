@@ -6,8 +6,8 @@ import { findPlayer } from "../../utils/minecraft";
 import Command from "./Command";
 
 export default class GoToCommand extends Command {
-  name: string = "go-to";
-  description: string = "Goes to a player.";
+  name = "go-to";
+  description = "Goes to a player.";
 
   execute(args: string[], sender: string): void {
     const target = findPlayer(this.bot, sender, args[0] ?? "");

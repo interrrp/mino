@@ -2,8 +2,8 @@ import { findPlayer } from "../../utils/minecraft";
 import Command from "./Command";
 
 export default class FightCommand extends Command {
-  name: string = "fight";
-  description: string = "Fight a player.";
+  name = "fight";
+  description = "Fight a player.";
 
   async execute(args: string[], sender: string): Promise<void> {
     if (args.length === 0) {

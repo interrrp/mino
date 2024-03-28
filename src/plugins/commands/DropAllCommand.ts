@@ -4,8 +4,8 @@ import { sleep } from "../../utils/common";
 import Command from "./Command";
 
 export default class DropAllCommand extends Command {
-  name: string = "drop-all";
-  description: string = "Drops all items in the inventory.";
+  name = "drop-all";
+  description = "Drops all items in the inventory.";
 
   async execute(): Promise<void> {
     for (const item in this.bot.inventory.slots) {
