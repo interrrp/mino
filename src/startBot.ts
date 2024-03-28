@@ -8,6 +8,7 @@ import logger from "./logger";
 import autoArmorPlugin from "./plugins/autoArmorPlugin";
 import commandsPlugin from "./plugins/commands";
 import corePlugin from "./plugins/corePlugin";
+import motherPlugin from "./plugins/motherPlugin";
 import pvpPlugin from "./plugins/pvp";
 import viewerPlugin from "./plugins/viewerPlugin";
 
@@ -27,7 +28,15 @@ export default async function startBot(): Promise<Bot> {
 
   bot.on("error", handleError);
 
-  bot.loadPlugins([pathfinderPlugin, corePlugin, viewerPlugin, commandsPlugin, pvpPlugin, autoArmorPlugin]);
+  bot.loadPlugins([
+    pathfinderPlugin,
+    corePlugin,
+    viewerPlugin,
+    motherPlugin,
+    commandsPlugin,
+    pvpPlugin,
+    autoArmorPlugin,
+  ]);
 
   return bot;
 }

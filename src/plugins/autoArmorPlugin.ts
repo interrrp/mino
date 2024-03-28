@@ -1,6 +1,6 @@
 import config from "../../qbot.config.json";
 
-import minecraftData from "minecraft-data";
+import getMinecraftData from "minecraft-data";
 import { Bot } from "mineflayer";
 import { Entity } from "prismarine-entity";
 
@@ -25,7 +25,7 @@ async function handlePlayerCollect(bot: Bot, collector: Entity, item: Entity): P
   if (!itemStack) return;
 
   const itemId = itemStack.itemId;
-  const itemName = minecraftData(bot.version).items[itemId].name;
+  const itemName = getMinecraftData(bot.version).items[itemId].name;
 
   // Let things register, so we wait for a short period of time.
   await sleep(config.plugins.autoArmor.equipDelay);

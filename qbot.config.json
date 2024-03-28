@@ -43,6 +43,14 @@
       "firstPerson": true
     },
 
+    "mother": {
+      "boats": ["oak_boat", "spruce_boat", "birch_boat", "jungle_boat", "acacia_boat", "dark_oak_boat"],
+      "keepBucket": true,
+      "maxVelocity": 1.0,
+      "mlgBlocks": ["water_bucket", "slime_block", "sweet_berries", "cobweb", "web", "hay_block"],
+      "vehicles": ["Boat", "Donkey", "Horse", "Minecart"]
+    },
+
     "commands": {
       "prefix": "qbot ",
 
