@@ -37,6 +37,12 @@
       }
     },
 
+    "viewer": {
+      "enabled": true,
+      "port": 3000,
+      "firstPerson": true
+    },
+
     "commands": {
       "prefix": "qbot ",
 
