@@ -11,6 +11,8 @@ import corePlugin from "./plugins/corePlugin";
 import pvpPlugin from "./plugins/pvp";
 
 export default async function startBot(): Promise<Bot> {
+  logger.info("Starting");
+
   const options = {
     username: config.bot.username,
     password: config.bot.password,
@@ -19,15 +21,11 @@ export default async function startBot(): Promise<Bot> {
     host: config.server.host,
     port: config.server.port,
   };
-
-  logger.info("Creating bot object");
   const bot = createBot(options);
   bot.options = options;
 
-  logger.info("Registering error handler");
   bot.on("error", handleError);
 
-  logger.info("Loading plugins");
   bot.loadPlugins([pathfinderPlugin, corePlugin, commandsPlugin, pvpPlugin, autoArmorPlugin]);
 
   return bot;
