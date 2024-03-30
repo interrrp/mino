@@ -38,7 +38,7 @@
     },
 
     "viewer": {
-      "enabled": true,
+      "enabled": false,
       "port": 3000,
       "firstPerson": true
     },
