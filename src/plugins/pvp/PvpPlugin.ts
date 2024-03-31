@@ -90,9 +90,12 @@ export default class PvpPlugin {
         }
 
         this.bot.setControlState("jump", true);
-        this.bot.attack(this.currentTarget);
-        this.attackCooldown = PVP_CONFIG.attackCooldown;
-        this.bot.setControlState("jump", false);
+        setTimeout(() => {
+          if (!this.currentTarget) return;
+          this.bot.attack(this.currentTarget);
+          this.attackCooldown = PVP_CONFIG.attackCooldown;
+          this.bot.setControlState("jump", false);
+        }, 500);
       } else {
         this.attackCooldown -= 1;
         this.bot.activateItem(true);
