@@ -72,7 +72,7 @@ export default class PvpPlugin {
     this.setCurrentTargetBasedOnDistance();
 
     const target = this.currentTarget;
-    const distanceToTarget = this.bot.entity.position.distanceTo(target.position);
+    const distanceToTarget = this.getDistanceToTarget();
 
     if (!this.bot.pathfinder.goal) {
       this.setGoalToTarget();
@@ -83,7 +83,7 @@ export default class PvpPlugin {
     }
 
     if (distanceToTarget <= PVP_CONFIG.reach) {
-      this.bot.lookAt(this.currentTarget.position.offset(0, target.height, 0), true);
+      this.bot.lookAt(target.position.offset(0, target.height, 0), true);
 
       if (this.attackCooldown <= 0) {
         if (this.hasShield()) {
@@ -123,7 +123,7 @@ export default class PvpPlugin {
   }
 
   private updateStrafe(): void {
-    if (!this.currentTarget) {
+    if (!this.currentTarget || this.getDistanceToTarget() > PVP_CONFIG.reach) {
       this.bot.setControlState("left", false);
       this.bot.setControlState("right", false);
       return;
@@ -169,6 +169,11 @@ export default class PvpPlugin {
     }
 
     this.currentTarget = closestTarget;
+  }
+
+  private getDistanceToTarget(): number {
+    if (!this.currentTarget) return 0;
+    return this.bot.entity.position.distanceTo(this.currentTarget.position);
   }
 
   private setGoalToTarget(): void {
