@@ -17,17 +17,16 @@ export default class PvpPlugin {
   /**
    * The time in milliseconds that the bot has to wait before attacking again.
    */
-  private attackCooldown: number;
+  private attackCooldown: number = 0;
+
+  strafeDir: "left" | "right" = "left";
 
   targets: Entity[] = [];
-  currentTarget: Entity | null;
+  currentTarget: Entity | null = null;
 
   constructor(bot: Bot) {
     this.bot = bot;
     this.bot.pvp = this;
-
-    this.attackCooldown = 0;
-    this.currentTarget = null;
 
     this.registerEvents();
   }
@@ -45,6 +44,7 @@ export default class PvpPlugin {
 
     this.currentTarget = this.targets[0];
 
+    this.updateStrafe();
     await this.equipWeapon();
   }
 
@@ -57,6 +57,8 @@ export default class PvpPlugin {
     this.currentTarget = null;
 
     this.bot.pathfinder.setGoal(null);
+
+    this.updateStrafe();
   }
 
   private registerEvents(): void {
@@ -90,10 +92,9 @@ export default class PvpPlugin {
         }
 
         this.bot.setControlState("jump", true);
+        this.attackCooldown = PVP_CONFIG.attackCooldown;
         setTimeout(() => {
-          if (!this.currentTarget) return;
-          this.bot.attack(this.currentTarget);
-          this.attackCooldown = PVP_CONFIG.attackCooldown;
+          this.hit();
           this.bot.setControlState("jump", false);
         }, 500);
       } else {
@@ -104,6 +105,31 @@ export default class PvpPlugin {
         }
       }
     }
+  }
+
+  private hit(): void {
+    if (!this.currentTarget) return;
+    this.bot.attack(this.currentTarget);
+    this.switchStrafeDir();
+  }
+
+  private switchStrafeDir(): void {
+    this.strafeDir = this.getOppositeStrafeDir();
+    this.updateStrafe();
+  }
+
+  private getOppositeStrafeDir(): "left" | "right" {
+    return this.strafeDir === "left" ? "right" : "left";
+  }
+
+  private updateStrafe(): void {
+    if (!this.currentTarget) {
+      this.bot.setControlState("left", false);
+      this.bot.setControlState("right", false);
+      return;
+    }
+    this.bot.setControlState(this.strafeDir, true);
+    this.bot.setControlState(this.getOppositeStrafeDir(), false);
   }
 
   private handleEntityDead(entity: Entity): void {
