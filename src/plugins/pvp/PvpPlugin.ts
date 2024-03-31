@@ -44,7 +44,6 @@ export default class PvpPlugin {
 
     this.currentTarget = this.targets[0];
 
-    this.updateStrafe();
     await this.equipWeapon();
   }
 
@@ -81,6 +80,8 @@ export default class PvpPlugin {
     if (this.bot.pathfinder.goal instanceof goals.GoalFollow && this.bot.pathfinder.goal.entity !== target) {
       this.setGoalToTarget();
     }
+
+    this.updateStrafe();
 
     if (distanceToTarget <= PVP_CONFIG.reach) {
       this.bot.lookAt(target.position.offset(0, target.height, 0), true);
