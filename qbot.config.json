@@ -27,7 +27,7 @@
     },
 
     "pvp": {
-      "reach": 3.5,
+      "reach": 3.0,
       "followRange": 3,
       "attackCooldown": 15,
       "critical": {
