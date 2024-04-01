@@ -92,12 +92,7 @@ export default class PvpPlugin {
           this.bot.setControlState("sneak", false);
         }
 
-        this.bot.setControlState("jump", true);
-        this.attackCooldown = PVP_CONFIG.attackCooldown;
-        setTimeout(() => {
-          this.hit();
-          this.bot.setControlState("jump", false);
-        }, 500);
+        this.hit(Math.random() < PVP_CONFIG.critical.chance);
       } else {
         this.attackCooldown -= 1;
         this.bot.activateItem(true);
@@ -108,9 +103,22 @@ export default class PvpPlugin {
     }
   }
 
-  private hit(): void {
+  private hit(critical: boolean): void {
     if (!this.currentTarget) return;
-    this.bot.attack(this.currentTarget);
+
+    if (!critical) {
+      this.attackCooldown = PVP_CONFIG.attackCooldown;
+      this.bot.attack(this.currentTarget);
+    } else {
+      this.bot.setControlState("jump", true);
+      this.attackCooldown = PVP_CONFIG.attackCooldown * PVP_CONFIG.critical.cooldownMultiplier;
+      setTimeout(() => {
+        if (!this.currentTarget) return;
+        this.bot.attack(this.currentTarget);
+        this.bot.setControlState("jump", false);
+      }, 500);
+    }
+
     this.switchStrafeDir();
   }
 

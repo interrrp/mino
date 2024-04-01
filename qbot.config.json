@@ -30,6 +30,10 @@
       "reach": 3.5,
       "followRange": 3,
       "attackCooldown": 15,
+      "critical": {
+        "chance": 0.5,
+        "cooldownMultiplier": 1.25
+      },
       "messages": {
         "enabled": true,
         "win": ["gg", "Try better next time"],
