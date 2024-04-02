@@ -27,7 +27,11 @@
     "pvp": {
       "reach": 3.0,
       "followRange": 3,
-      "attackCooldown": 15,
+      "cooldowns": {
+        "*_sword": 20,
+        "*_axe": 40,
+        "other": 15
+      },
       "critical": {
         "chance": 0.8,
         "delay": 500

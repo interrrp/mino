@@ -106,12 +106,14 @@ export default class PvpPlugin {
   private hit(critical: boolean): void {
     if (!this.currentTarget) return;
 
+    const cooldown = this.getAppropriateCooldown();
+
     if (!critical) {
-      this.attackCooldown = PVP_CONFIG.attackCooldown;
+      this.attackCooldown = cooldown;
       this.bot.attack(this.currentTarget);
     } else {
       this.bot.setControlState("jump", true);
-      this.attackCooldown = PVP_CONFIG.attackCooldown;
+      this.attackCooldown = cooldown;
       setTimeout(() => {
         if (!this.currentTarget) return;
         this.bot.attack(this.currentTarget);
@@ -139,6 +141,28 @@ export default class PvpPlugin {
     }
     this.bot.setControlState(this.strafeDir, true);
     this.bot.setControlState(this.getOppositeStrafeDir(), false);
+  }
+
+  private getAppropriateCooldown(): number {
+    const currentItemName = this.bot.heldItem?.name;
+    if (!currentItemName) return PVP_CONFIG.cooldowns.other;
+
+    for (const pattern in PVP_CONFIG.cooldowns) {
+      if (pattern === "other") continue;
+
+      // @ts-expect-error They exist
+      const cooldown = PVP_CONFIG.cooldowns[pattern];
+
+      const patNoAsterisk = pattern.replace("*", "");
+      if (
+        (pattern.startsWith("*") && currentItemName.endsWith(patNoAsterisk)) ||
+        (pattern.endsWith("*") && currentItemName.startsWith(patNoAsterisk))
+      ) {
+        return cooldown;
+      }
+    }
+
+    return PVP_CONFIG.cooldowns.other;
   }
 
   private handleEntityDead(entity: Entity): void {
