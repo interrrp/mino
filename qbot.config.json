@@ -11,8 +11,6 @@
     "version": "1.20.4"
   },
 
-  "silent": false,
-
   "plugins": {
     "core": {
       "reconnectOnKick": {
