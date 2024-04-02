@@ -45,6 +45,8 @@ export default class PvpPlugin {
 
     this.currentTarget = this.targets[0];
 
+    this.eatGapple();
+
     await this.equipWeapon();
   }
 
@@ -84,10 +86,8 @@ export default class PvpPlugin {
 
     this.updateStrafe();
 
-    const gapple = this.findGapple();
-    if (this.bot.health < 10 && gapple) {
-      this.bot.equip(gapple, "hand");
-      this.bot.activateItem();
+    if (this.bot.health < 10) {
+      this.eatGapple();
     } else if (this.bot.health >= 11) {
       await this.equipWeapon();
     }
@@ -172,6 +172,17 @@ export default class PvpPlugin {
     }
 
     return PVP_CONFIG.cooldowns.other;
+  }
+
+  private eatGapple(): void {
+    const gapple = this.findGapple();
+    if (!gapple) return;
+    this.bot.equip(gapple, "hand");
+    this.bot.activateItem();
+    this.attackCooldown = 100;
+    setTimeout(() => {
+      this.attackCooldown = this.getAppropriateCooldown();
+    }, 1200);
   }
 
   private findGapple(): Item | null {
