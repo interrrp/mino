@@ -93,7 +93,7 @@ export default class PvpPlugin {
     }
 
     if (distanceToTarget <= PVP_CONFIG.reach * 2) {
-      this.bot.lookAt(target.position.offset(0, target.height, 0));
+      this.bot.lookAt(target.position.offset(0, target.height, 0), true);
 
       if (this.attackCooldown <= 0) {
         if (this.hasShield()) {
