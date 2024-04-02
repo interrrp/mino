@@ -3,6 +3,7 @@ import config from "../../../qbot.config.json";
 import { Bot } from "mineflayer";
 import { goals } from "mineflayer-pathfinder";
 import { Entity } from "prismarine-entity";
+import { Item } from "prismarine-item";
 
 import { randomItem } from "../../utils/common";
 
@@ -82,6 +83,14 @@ export default class PvpPlugin {
     }
 
     this.updateStrafe();
+
+    const gapple = this.findGapple();
+    if (this.bot.health < 10 && gapple) {
+      this.bot.equip(gapple, "hand");
+      this.bot.activateItem();
+    } else if (this.bot.health >= 11) {
+      await this.equipWeapon();
+    }
 
     if (distanceToTarget <= PVP_CONFIG.reach * 2) {
       this.bot.lookAt(target.position.offset(0, target.height, 0));
@@ -163,6 +172,16 @@ export default class PvpPlugin {
     }
 
     return PVP_CONFIG.cooldowns.other;
+  }
+
+  private findGapple(): Item | null {
+    return (
+      // @ts-expect-error findInventoryItem works with string names too
+      this.bot.inventory.findInventoryItem("enchanted_golden_apple", null, false) ||
+      // @ts-expect-error findInventoryItem works with string names too
+      this.bot.inventory.findInventoryItem("golden_apple", null, false) ||
+      null
+    );
   }
 
   private handleEntityDead(entity: Entity): void {
