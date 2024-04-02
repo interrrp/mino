@@ -84,7 +84,7 @@ export default class PvpPlugin {
     this.updateStrafe();
 
     if (distanceToTarget <= PVP_CONFIG.reach * 2) {
-      this.bot.lookAt(target.position.offset(0, target.height, 0), true);
+      this.bot.lookAt(target.position.offset(0, target.height, 0));
 
       if (this.attackCooldown <= 0) {
         if (this.hasShield()) {
