@@ -6,7 +6,7 @@
   },
 
   "server": {
-    "host": "127.0.0.1",
+    "host": "localhost",
     "port": 25565,
     "version": "1.20.4"
   },
@@ -30,13 +30,10 @@
       "reach": 3.0,
       "followRange": 3,
       "attackCooldown": 15,
-      "critical": {
-        "chance": 0.5,
-        "cooldownMultiplier": 1.25
-      },
+      "criticalChance": 0.7,
       "messages": {
         "enabled": true,
-        "win": ["gg", "Try better next time"],
+        "win": ["gg", "Do better next time"],
         "loss": ["gg", "I'll do better next time..."]
       }
     },
