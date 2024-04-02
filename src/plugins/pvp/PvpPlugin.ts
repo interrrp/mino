@@ -109,6 +109,8 @@ export default class PvpPlugin {
           this.bot.setControlState("sneak", true);
         }
       }
+    } else {
+      this.attackCooldown = 0;
     }
   }
 
