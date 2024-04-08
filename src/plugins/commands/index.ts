@@ -1,12 +1,43 @@
+import config from "../../../qbot.config.json";
+
+import fs from "node:fs/promises";
+
 import { Bot } from "mineflayer";
 
-import CommandsPlugin from "./CommandsPlugin";
+export type Command = {
+  name: string;
+  description: string;
+  execute: (bot: Bot, args: string[], sender: string) => void | Promise<void>;
+};
 
-/**
- * This plugin adds a command system to the bot.
- *
- * @param bot The bot.
- */
-export default function commandsPlugin(bot: Bot): void {
-  CommandsPlugin.register(bot);
+export default async function commandsPlugin(bot: Bot): Promise<void> {
+  registerChatHandler(bot, await getCommands());
+}
+
+async function getCommands(): Promise<Command[]> {
+  const commandFiles = await fs.readdir("src/plugins/commands");
+  const commands = [];
+  for (const file of commandFiles) {
+    const modName = file.replace(".ts", "");
+    if (modName === "index") continue;
+    commands.push((await import(`./${modName}`)).default);
+  }
+  return commands;
+}
+
+function registerChatHandler(bot: Bot, commands: Command[]): void {
+  const handler = (username: string, message: string) => {
+    if (username === bot.username) {
+      return;
+    }
+
+    message = message.replace(config.plugins.commands.prefix, "");
+
+    const args = message.split(" ");
+    const command = commands.find((c) => c.name === args[0]);
+    if (command) command.execute(bot, args.slice(1), username);
+  };
+
+  bot.on("chat", handler);
+  bot.on("whisper", handler);
 }
