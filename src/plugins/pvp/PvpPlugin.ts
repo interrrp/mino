@@ -76,11 +76,10 @@ export default class PvpPlugin {
     const target = this.currentTarget;
     const distanceToTarget = this.getDistanceToTarget();
 
-    if (!this.bot.pathfinder.goal) {
-      this.setGoalToTarget();
-    }
-
-    if (this.bot.pathfinder.goal instanceof goals.GoalFollow && this.bot.pathfinder.goal.entity !== target) {
+    if (
+      !this.bot.pathfinder.goal ||
+      (this.bot.pathfinder.goal instanceof goals.GoalFollow && this.bot.pathfinder.goal.entity !== target)
+    ) {
       this.setGoalToTarget();
     }
 
