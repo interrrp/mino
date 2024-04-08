@@ -8,18 +8,17 @@ export default {
   description: "Fight a player.",
   async execute(bot, args, sender) {
     // Don't target the bot itself
-    args = args.filter((v) => v !== bot.username && v !== "you");
+    args = args.filter((arg) => arg !== bot.username && arg !== "you");
 
+    const senderEntity = bot.players[sender].entity;
     if (args.length === 0) {
-      await bot.pvp.fight(bot.players[sender].entity);
-    } else if (args[0]) {
-      const player = findPlayer(bot, sender, args[0]);
-      if (player) bot.pvp.fight(player.entity);
-    } else {
-      const targets = args
-        .map((ref) => findPlayer(bot, sender, ref)?.entity)
-        .filter((ent): ent is Entity => ent !== undefined);
-      await bot.pvp.fight(targets);
+      await bot.pvp.fight(senderEntity);
+      return;
     }
+
+    const targets = args
+      .map((ref) => findPlayer(bot, sender, ref)?.entity)
+      .filter((ent): ent is Entity => ent !== undefined);
+    await bot.pvp.fight(targets);
   },
 } as Command;
