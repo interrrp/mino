@@ -1,3 +1,5 @@
+import { Entity } from "prismarine-entity";
+
 import { Command } from ".";
 import { findPlayer } from "../../utils/minecraft";
 
@@ -9,16 +11,12 @@ export default {
       await bot.pvp.fight(bot.players[sender].entity);
     } else if (args[0]) {
       const player = findPlayer(bot, sender, args[0]);
-      if (!player) return;
-
-      await bot.pvp.fight(player.entity);
+      if (player) bot.pvp.fight(player.entity);
     } else {
-      for (const username of args) {
-        const player = findPlayer(bot, sender, username);
-        if (!player) return;
-
-        await bot.pvp.fight(player.entity);
-      }
+      const targets = args
+        .map((ref) => findPlayer(bot, sender, ref)?.entity)
+        .filter((ent): ent is Entity => ent !== undefined);
+      await bot.pvp.fight(targets);
     }
   },
 } as Command;
