@@ -214,7 +214,7 @@ export default class PvpPlugin {
       }
     }
 
-    if (this.currentTarget === null || this.targets.length === 0) {
+    if (this.targets.length === 0) {
       this.stopFighting();
       if (PVP_CONFIG.messages.enabled) this.bot.chat(randomItem(PVP_CONFIG.messages.win));
     }
