@@ -8,7 +8,7 @@ export default {
   description: "Fight a player.",
   async execute(bot, args, sender) {
     // Don't target the bot itself
-    args = args.filter((v) => v !== bot.username);
+    args = args.filter((v) => v !== bot.username && v !== "you");
 
     if (args.length === 0) {
       await bot.pvp.fight(bot.players[sender].entity);
