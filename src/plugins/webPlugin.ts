@@ -19,7 +19,12 @@ export default function webPlugin(bot: Bot): void {
 
   router.ws("/chat", (ws) => {
     ws.on("message", bot.chat);
-    bot.on("chat", (username, message) => ws.send(`${username}: ${message}`));
+
+    function chatHandler(username: string, message: string) {
+      ws.send(`${username}: ${message}`);
+    }
+    bot.on("chat", chatHandler);
+    ws.on("close", () => bot.removeListener("chat", chatHandler));
   });
 
   const port = config.plugins.web.port;
