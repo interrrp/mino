@@ -51,6 +51,11 @@
       "vehicles": ["Boat", "Donkey", "Horse", "Minecart"]
     },
 
+    "web": {
+      "enabled": true,
+      "port": 8080
+    },
+
     "commands": {
       "prefix": "qbot ",
 
