@@ -10,7 +10,6 @@ import commandsPlugin from "./plugins/commands";
 import corePlugin from "./plugins/corePlugin";
 import motherPlugin from "./plugins/motherPlugin";
 import pvpPlugin from "./plugins/pvp";
-import sprintJumpPlugin from "./plugins/sprintJumpPlugin";
 import viewerPlugin from "./plugins/viewerPlugin";
 
 export default async function startBot(): Promise<Bot> {
@@ -37,7 +36,6 @@ export default async function startBot(): Promise<Bot> {
     commandsPlugin,
     pvpPlugin,
     autoArmorPlugin,
-    sprintJumpPlugin,
   ]);
 
   return bot;
