@@ -1,4 +1,4 @@
-import logger from "./logger";
+import logger from "@/logger";
 
 export default function handleError(error: Error): void {
   if (error.message.includes("unsupported/unknown protocol version")) {

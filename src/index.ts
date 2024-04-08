@@ -1,8 +1,8 @@
-import config from "../qbot.config.json";
+import config from "config";
 
 import chalk from "chalk";
 
-import startBot from "./startBot";
+import startBot from "@/startBot";
 
 async function main() {
   console.clear();

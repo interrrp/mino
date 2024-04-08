@@ -1,5 +1,5 @@
-import { Command } from ".";
-import { findPlayer } from "../../utils/minecraft";
+import { Command } from "@/plugins/commands";
+import { findPlayer } from "@/utils/minecraft";
 
 export default {
   name: "unfight",

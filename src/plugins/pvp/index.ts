@@ -1,6 +1,6 @@
 import { Bot } from "mineflayer";
 
-import PvpPlugin from "./PvpPlugin";
+import PvpPlugin from "@/plugins/pvp/PvpPlugin";
 
 /**
  * This plugin is used to add PvP functionality to the bot.

@@ -1,11 +1,11 @@
-import config from "../../qbot.config.json";
+import config from "config";
 
 import { Bot } from "mineflayer";
 import { Movements } from "mineflayer-pathfinder";
 
-import logger from "../logger";
-import startBot from "../startBot";
-import { sleep } from "../utils/common";
+import logger from "@/logger";
+import startBot from "@/startBot";
+import { sleep } from "@/utils/common";
 
 /**
  * This plugin is used to handle events that are not specific to any other

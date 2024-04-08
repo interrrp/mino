@@ -1,8 +1,8 @@
-import config from "../../../qbot.config.json";
+import config from "config";
 
-import { Command } from ".";
-import { randomItem } from "../../utils/common";
-import { findPlayer } from "../../utils/minecraft";
+import { Command } from "@/plugins/commands";
+import { randomItem } from "@/utils/common";
+import { findPlayer } from "@/utils/minecraft";
 
 export default {
   name: "flirt",

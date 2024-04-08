@@ -3,13 +3,13 @@
  *
  * @author MakkusuOtaku <https://github.com/MakkusuOtaku>
  */
-import config from "../../qbot.config.json";
+import config from "config";
 
 import getMinecraftData from "minecraft-data";
 import mineflayer from "mineflayer";
 import vec3 from "vec3";
 
-import { sleep } from "../utils/common";
+import { sleep } from "@/utils/common";
 
 type BoatType = "oak_boat" | "spruce_boat" | "birch_boat" | "jungle_boat" | "acacia_boat" | "dark_oak_boat";
 type MlgBlockType = "water_bucket" | "slime_block" | "sweet_berries" | "cobweb" | "web" | "hay_block";

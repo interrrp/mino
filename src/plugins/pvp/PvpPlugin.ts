@@ -1,11 +1,11 @@
-import config from "../../../qbot.config.json";
+import config from "config";
 
 import { Bot } from "mineflayer";
 import { goals } from "mineflayer-pathfinder";
 import { Entity } from "prismarine-entity";
 import { Item } from "prismarine-item";
 
-import { randomItem } from "../../utils/common";
+import { randomItem } from "@/utils/common";
 
 const PVP_CONFIG = config.plugins.pvp;
 

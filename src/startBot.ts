@@ -1,16 +1,16 @@
-import config from "../qbot.config.json";
+import config from "config";
 
 import { Bot, createBot } from "mineflayer";
 import { pathfinder as pathfinderPlugin } from "mineflayer-pathfinder";
 
-import handleError from "./handleError";
-import logger from "./logger";
-import autoArmorPlugin from "./plugins/autoArmorPlugin";
-import commandsPlugin from "./plugins/commands";
-import corePlugin from "./plugins/corePlugin";
-import motherPlugin from "./plugins/motherPlugin";
-import pvpPlugin from "./plugins/pvp";
-import webPlugin from "./plugins/webPlugin";
+import handleError from "@/handleError";
+import logger from "@/logger";
+import autoArmorPlugin from "@/plugins/autoArmorPlugin";
+import commandsPlugin from "@/plugins/commands";
+import corePlugin from "@/plugins/corePlugin";
+import motherPlugin from "@/plugins/motherPlugin";
+import pvpPlugin from "@/plugins/pvp";
+import webPlugin from "@/plugins/webPlugin";
 
 export default async function startBot(): Promise<Bot> {
   logger.info("Starting");

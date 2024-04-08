@@ -1,7 +1,7 @@
-import config from "../../../qbot.config.json";
+import config from "config";
 
-import { Command } from ".";
-import { sleep } from "../../utils/common";
+import { Command } from "@/plugins/commands";
+import { sleep } from "@/utils/common";
 
 export default {
   name: "drop-all",

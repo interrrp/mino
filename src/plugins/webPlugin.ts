@@ -1,10 +1,10 @@
-import config from "../../qbot.config.json";
+import config from "config";
 
 import express from "express";
 import expressWs from "express-ws";
 import { Bot } from "mineflayer";
 
-import logger from "../logger";
+import logger from "@/logger";
 
 /**
  * Adds a web interface to the bot.

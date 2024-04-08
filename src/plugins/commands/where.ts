@@ -1,4 +1,4 @@
-import { Command } from ".";
+import { Command } from "@/plugins/commands";
 
 export default {
   name: "where",

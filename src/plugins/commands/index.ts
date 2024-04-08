@@ -1,4 +1,4 @@
-import config from "../../../qbot.config.json";
+import config from "config";
 
 import fs from "node:fs/promises";
 

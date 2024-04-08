@@ -5,7 +5,11 @@
     "skipLibCheck": true,
     "strict": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "config": ["./qbot.config.json"],
+      "@/*": ["./src/*"]
+    }
   },
   "ts-node": {
     "files": true
