@@ -2,6 +2,7 @@ import { Command } from ".";
 
 export default {
   name: "where",
+  aliases: ["pos", "position", "loc", "location"],
   description: "Tells you where the bot is.",
   execute(bot, args, sender) {
     const pos = bot.entity.position;

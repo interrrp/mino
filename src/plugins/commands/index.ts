@@ -6,6 +6,7 @@ import { Bot } from "mineflayer";
 
 export type Command = {
   name: string;
+  aliases: string[] | undefined;
   description: string;
   execute: (bot: Bot, args: string[], sender: string) => void | Promise<void>;
 };
@@ -34,7 +35,7 @@ function registerChatHandler(bot: Bot, commands: Command[]): void {
     message = message.replace(config.plugins.commands.prefix, "");
 
     const args = message.split(" ");
-    const command = commands.find((c) => c.name === args[0]);
+    const command = commands.find((c) => c.name === args[0] || c.aliases?.includes(args[0]));
     if (command) command.execute(bot, args.slice(1), username);
   };
 

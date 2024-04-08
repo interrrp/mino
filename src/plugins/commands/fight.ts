@@ -5,6 +5,7 @@ import { findPlayer } from "../../utils/minecraft";
 
 export default {
   name: "fight",
+  aliases: ["pvp", "duel"],
   description: "Fight a player.",
   async execute(bot, args, sender) {
     // Don't target the bot itself

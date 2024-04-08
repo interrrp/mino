@@ -5,6 +5,7 @@ import { sleep } from "../../utils/common";
 
 export default {
   name: "drop-all",
+  aliases: ["clear"],
   description: "Drops all items in the inventory.",
   async execute(bot) {
     for (const item in bot.inventory.slots) {

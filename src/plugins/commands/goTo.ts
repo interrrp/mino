@@ -7,6 +7,7 @@ import { findPlayer } from "../../utils/minecraft";
 
 export default {
   name: "go-to",
+  aliases: ["go", "goto"],
   description: "Goes to a player.",
   execute(bot, args, sender) {
     const target = findPlayer(bot, sender, args[0] ?? "");

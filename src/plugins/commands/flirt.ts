@@ -6,6 +6,7 @@ import { findPlayer } from "../../utils/minecraft";
 
 export default {
   name: "flirt",
+  aliases: ["rizz"],
   description: "Flirt with a player.",
   execute(bot, args, sender) {
     const player = findPlayer(bot, sender, args[0] ?? "");
