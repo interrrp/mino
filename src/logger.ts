@@ -1,6 +1,3 @@
-/**
- * @file Contains functions for logging messages to the console.
- */
 import chalk from "chalk";
 
 /**
@@ -17,7 +14,6 @@ function log(prefix: string, color: chalk.Chalk, message: string) {
 
 /**
  * Logs a message to the console with the "info" prefix.
- *
  * @param message The message to log.
  */
 export function info(message: string) {
@@ -26,7 +22,6 @@ export function info(message: string) {
 
 /**
  * Logs a message to the console with the "warn" prefix.
- *
  * @param message The message to log.
  */
 export function warn(message: string) {
@@ -35,7 +30,6 @@ export function warn(message: string) {
 
 /**
  * Logs a message to the console with the "error" prefix.
- *
  * @param message The message to log.
  */
 export function error(message: string) {
