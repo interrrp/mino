@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "rootDirs": ["src", "web"],
-    "outDir": "dist",
+    "rootDir": "src",
+    "outDir": "dist/bot",
     "skipLibCheck": true,
     "strict": true,
     "esModuleInterop": true,

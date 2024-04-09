@@ -15,7 +15,7 @@ export default function webPlugin(bot: Bot): void {
 
   const router = expressWs(express()).app;
 
-  router.use(express.static("web/dist"));
+  router.use(express.static("./dist/web"));
 
   router.ws("/chat", (ws) => {
     ws.on("message", bot.chat);
