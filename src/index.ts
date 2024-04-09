@@ -12,7 +12,7 @@ async function main() {
 }
 
 function printBanner(): void {
-  const name = chalk.blue("qBot");
+  const name = chalk.blue("Mino");
   const on = chalk.gray("on");
   const server = chalk.blue(config.server.host);
   const version = chalk.gray(config.server.version);

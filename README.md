@@ -1,6 +1,6 @@
-# ⛏️🤖 qBot - A customizable Minecraft bot
+# ⛏️🤖 Mino - A customizable Minecraft bot
 
-> Built upon `mineflayer`, qBot is written in
+> Built upon `mineflayer`, Mino is written in
 > [TypeScript](https://www.typescriptlang.org/) with a well-documented codebase
 
 ## 🔥 Prerequisites
@@ -13,11 +13,11 @@ This project depends on some software, notably:
 
 ## ⬆️ Usage
 
-To give qBot a try, clone this repository, adjust the
-[configuration file](qbot.config.json) to your preferences, and start the bot:
+To give Mino a try, clone this repository, adjust the
+[configuration file](mino.config.json) to your preferences, and start the bot:
 
 ```sh
-git clone https://github.com/interrrp/qbot
+git clone https://github.com/interrrp/mino
 # ^ Edit configuration after this step
 
 # Install dependencies

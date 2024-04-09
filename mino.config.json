@@ -1,8 +1,8 @@
 {
   "bot": {
-    "username": "qBot",
+    "username": "Mino",
     "password": "",
-    "brand": "qbot"
+    "brand": "Mino"
   },
 
   "server": {
@@ -57,7 +57,7 @@
     },
 
     "commands": {
-      "prefix": "qbot ",
+      "prefix": "mino ",
 
       "dropAll": {
         "delay": 100

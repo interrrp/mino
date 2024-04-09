@@ -8,7 +8,7 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "paths": {
-      "config": ["./qbot.config.json"],
+      "config": ["./mino.config.json"],
       "@/*": ["./src/*"]
     }
   },
