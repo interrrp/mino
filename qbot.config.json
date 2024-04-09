@@ -34,7 +34,7 @@
       },
       "critical": {
         "chance": 0.8,
-        "delay": 500
+        "delay": 10
       },
       "messages": {
         "enabled": true,

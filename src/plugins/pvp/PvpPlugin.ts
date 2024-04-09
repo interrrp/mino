@@ -124,11 +124,11 @@ export default class PvpPlugin {
     } else {
       this.bot.setControlState("jump", true);
       this.attackCooldown = cooldown;
-      setTimeout(() => {
+      this.bot.waitForTicks(PVP_CONFIG.critical.delay).then(() => {
         if (!this.currentTarget) return;
         this.bot.attack(this.currentTarget);
         this.bot.setControlState("jump", false);
-      }, PVP_CONFIG.critical.delay);
+      });
     }
 
     this.switchStrafeDir();
