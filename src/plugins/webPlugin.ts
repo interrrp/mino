@@ -19,6 +19,10 @@ export default function webPlugin(bot: Bot): void {
   const server = http.createServer(app);
   const io = new IoServer(server);
 
+  bot.on("end", () => {
+    server.close();
+  });
+
   app.use(express.static("./dist/web"));
 
   bot.on("chat", (username, message) => {
