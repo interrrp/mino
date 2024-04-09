@@ -1,8 +1,10 @@
 import config from "config";
 
+import http from "node:http";
+
 import express from "express";
-import expressWs from "express-ws";
 import { Bot } from "mineflayer";
+import { Server as IoServer } from "socket.io";
 
 import logger from "@/logger";
 
@@ -13,20 +15,20 @@ import logger from "@/logger";
 export default function webPlugin(bot: Bot): void {
   if (!config.plugins.web.enabled) return;
 
-  const router = expressWs(express()).app;
+  const app = express();
+  const server = http.createServer(app);
+  const io = new IoServer(server);
 
-  router.use(express.static("./dist/web"));
+  app.use(express.static("./dist/web"));
 
-  router.ws("/chat", (ws) => {
-    ws.on("message", bot.chat);
+  bot.on("chat", (username, message) => {
+    io.emit("message", { username, message });
+  });
 
-    function chatHandler(username: string, message: string) {
-      ws.send(`${username}: ${message}`);
-    }
-    bot.on("chat", chatHandler);
-    ws.on("close", () => bot.removeListener("chat", chatHandler));
+  io.on("connection", (socket) => {
+    socket.on("message", bot.chat);
   });
 
   const port = config.plugins.web.port;
-  router.listen(port, () => logger.info(`Web interface listening on http://localhost:${port}`));
+  server.listen(port, () => logger.info(`Web interface listening on http://localhost:${port}`));
 }

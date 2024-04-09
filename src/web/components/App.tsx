@@ -1,3 +1,11 @@
+import Header from "./Header";
+import Main from "./Main";
+
 export default function App() {
-  return <h1 className="text-4xl font-bold">Hello, world!</h1>;
+  return (
+    <>
+      <Header />
+      <Main />
+    </>
+  );
 }
