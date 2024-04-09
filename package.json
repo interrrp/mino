@@ -1,8 +1,8 @@
 {
   "name": "qbot",
   "version": "1.0.0",
-  "description": "",
   "main": "src/index.ts",
+  "private": true,
   "scripts": {
     "build": "tsc && vite build",
     "start": "vite build && ts-node -r tsconfig-paths/register .",
@@ -10,9 +10,6 @@
     "watch-web": "vite build --watch",
     "dev": "concurrently \"npm:watch-*\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/express": "^4.17.21",
