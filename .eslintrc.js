@@ -4,7 +4,7 @@ module.exports = {
     node: true,
     browser: true,
   },
-  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:react/recommended"],
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/strict", "plugin:react/recommended"],
   overrides: [
     {
       env: {
