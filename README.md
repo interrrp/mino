@@ -1,41 +1,36 @@
 # ⛏️🤖 Mino - A customizable Minecraft bot
 
-> Built upon `mineflayer`, Mino is written in
-> [TypeScript](https://www.typescriptlang.org/) with a well-documented codebase
+> Built upon `mineflayer`, Mino is written in [TypeScript](https://www.typescriptlang.org/) with a
+> well-documented codebase
 
 ## 🔥 Prerequisites
 
-This project depends on some software, notably:
+This project only depends on [Deno](https://deno.land).
 
-- [Node.js](https://nodejs.org)
-- [PNPM](https://pnpm.io/)
-  > To install `pnpm`, simply do `npm i -g pnpm`
+To install `deno`, follow the instructions on the
+[official website](https://deno.land/#installation).
 
 ## ⬆️ Usage
 
-To give Mino a try, clone this repository, adjust the
-[configuration file](mino.config.json) to your preferences, and start the bot:
+To give Mino a try, clone this repository, adjust the [configuration file](mino.config.json) to your
+preferences, and start the bot:
 
 ```sh
 git clone https://github.com/interrrp/mino
-# ^ Edit configuration after this step
-
-# Install dependencies
-pnpm i
+# ^ Edit configuration after this step (mino.toml)
 
 # Start the bot
-pnpm start
+deno task start
 ```
 
 ## 🧑‍💻 Contributing
 
-Simply create a pull request! However, there are some guidelines you must
-follow:
+Simply create a pull request! However, there are some guidelines you must follow:
 
 - Code must work (please, this should be common sense.)
 - All functions should be documented
-- Lint your code using [ESLint](https://eslint.org) (`pnpm exec eslint .`)
-- Format your code using [Prettier](https://prettier.io/) (`pnpm exec prettier --write .`)
+- Lint your code using [`deno lint`](https://deno.land/manual/tools/linter)
+- Format your code using [`deno fmt`](https://deno.land/manual/tools/formatter)
 
 ## 🔑 License
 

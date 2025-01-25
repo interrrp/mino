@@ -1,4 +1,4 @@
-import { Command } from "@/plugins/commands";
+import { Command } from "~/plugins/commands/index.ts";
 
 export default {
   name: "unfight",

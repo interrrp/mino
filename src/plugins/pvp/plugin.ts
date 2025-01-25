@@ -1,18 +1,18 @@
-import config from "config";
+import { config } from "~/config.ts";
 
 import { Bot } from "mineflayer";
 import { goals } from "mineflayer-pathfinder";
 import { Entity } from "prismarine-entity";
 import { Item } from "prismarine-item";
 
-import { randomItem } from "@/utils/common";
+import { randomItem } from "~/utils.ts";
 
 const PVP_CONFIG = config.plugins.pvp;
 
 /**
  * This plugin is used to add PvP functionality to the bot.
  */
-export default class PvpPlugin {
+export class PvpPlugin {
   private bot: Bot;
 
   /**
@@ -78,7 +78,8 @@ export default class PvpPlugin {
 
     if (
       !this.bot.pathfinder.goal ||
-      (this.bot.pathfinder.goal instanceof goals.GoalFollow && this.bot.pathfinder.goal.entity !== target)
+      (this.bot.pathfinder.goal instanceof goals.GoalFollow &&
+        this.bot.pathfinder.goal.entity !== target)
     ) {
       this.setGoalToTarget();
     }
@@ -91,7 +92,7 @@ export default class PvpPlugin {
       await this.equipWeapon();
     }
 
-    if (distanceToTarget <= PVP_CONFIG.reach * 2) {
+    if (distanceToTarget <= PVP_CONFIG.reachBlocks * 2) {
       this.bot.lookAt(target.position.offset(0, target.height, 0), true);
 
       if (this.attackCooldown <= 0) {
@@ -124,7 +125,7 @@ export default class PvpPlugin {
     } else {
       this.bot.setControlState("jump", true);
       this.attackCooldown = cooldown;
-      this.bot.waitForTicks(PVP_CONFIG.critical.delay).then(() => {
+      this.bot.waitForTicks(PVP_CONFIG.critical.delayMillis).then(() => {
         if (!this.currentTarget) return;
         this.bot.attack(this.currentTarget);
         this.bot.setControlState("jump", false);
@@ -144,7 +145,7 @@ export default class PvpPlugin {
   }
 
   private updateStrafe(): void {
-    if (!this.currentTarget || this.getDistanceToTarget() > PVP_CONFIG.reach) {
+    if (!this.currentTarget || this.getDistanceToTarget() > PVP_CONFIG.reachBlocks) {
       this.bot.setControlState("left", false);
       this.bot.setControlState("right", false);
       return;
@@ -155,9 +156,9 @@ export default class PvpPlugin {
 
   private getAppropriateCooldown(): number {
     const currentItemName = this.bot.heldItem?.name;
-    if (!currentItemName) return PVP_CONFIG.cooldowns.other;
+    if (!currentItemName) return PVP_CONFIG.cooldownsMillis.other;
 
-    for (const pattern in PVP_CONFIG.cooldowns) {
+    for (const pattern in PVP_CONFIG.cooldownsMillis) {
       if (pattern === "other") continue;
 
       // @ts-expect-error They exist
@@ -172,7 +173,7 @@ export default class PvpPlugin {
       }
     }
 
-    return PVP_CONFIG.cooldowns.other;
+    return PVP_CONFIG.cooldownsMillis.other;
   }
 
   private eatGapple(): void {
@@ -188,8 +189,12 @@ export default class PvpPlugin {
 
   private findGapple(): Item | null {
     return (
-      // @ts-expect-error findInventoryItem works with string names too
-      this.bot.inventory.findInventoryItem("enchanted_golden_apple", null, false) ||
+      this.bot.inventory.findInventoryItem(
+        // @ts-expect-error findInventoryItem works with string names too
+        "enchanted_golden_apple",
+        null,
+        false,
+      ) ||
       // @ts-expect-error findInventoryItem works with string names too
       this.bot.inventory.findInventoryItem("golden_apple", null, false) ||
       null
@@ -201,7 +206,9 @@ export default class PvpPlugin {
 
     if (entity === this.bot.entity) {
       this.stopFighting();
-      if (PVP_CONFIG.messages.enabled) this.bot.chat(randomItem(PVP_CONFIG.messages.loss));
+      if (PVP_CONFIG.messages.enabled) {
+        this.bot.chat(randomItem(PVP_CONFIG.messages.loss));
+      }
       return;
     }
 
@@ -215,7 +222,9 @@ export default class PvpPlugin {
 
     if (this.targets.length === 0) {
       this.stopFighting();
-      if (PVP_CONFIG.messages.enabled) this.bot.chat(randomItem(PVP_CONFIG.messages.win));
+      if (PVP_CONFIG.messages.enabled) {
+        this.bot.chat(randomItem(PVP_CONFIG.messages.win));
+      }
     }
   }
 
@@ -243,7 +252,9 @@ export default class PvpPlugin {
   private setGoalToTarget(): void {
     if (!this.currentTarget) return;
 
-    this.bot.pathfinder.setGoal(new goals.GoalFollow(this.currentTarget, PVP_CONFIG.followRange));
+    this.bot.pathfinder.setGoal(
+      new goals.GoalFollow(this.currentTarget, PVP_CONFIG.followRangeBlocks),
+    );
   }
 
   private hasShield(): boolean {

@@ -1,5 +1,5 @@
-import { Command } from "@/plugins/commands";
-import { findPlayer } from "@/utils/minecraft";
+import { Command } from "~/plugins/commands/index.ts";
+import { findPlayer } from "~/utils.ts";
 
 export default {
   name: "greet",

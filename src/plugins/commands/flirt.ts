@@ -1,8 +1,7 @@
-import config from "config";
+import { config } from "~/config.ts";
 
-import { Command } from "@/plugins/commands";
-import { randomItem } from "@/utils/common";
-import { findPlayer } from "@/utils/minecraft";
+import { Command } from "~/plugins/commands/index.ts";
+import { findPlayer, randomItem } from "~/utils.ts";
 
 export default {
   name: "flirt",

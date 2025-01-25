@@ -1,5 +1,3 @@
-import chalk from "chalk";
-
 /**
  * Logs a message to the console. Logging functions are typically just a wrapper
  * around this function.
@@ -8,8 +6,8 @@ import chalk from "chalk";
  * @param color The color of the prefix.
  * @param message The message to log.
  */
-function log(prefix: string, color: chalk.Chalk, message: string) {
-  console.log(`${color(prefix)} ${message}`);
+function log(prefix: string, color: string, message: string) {
+  console.log(`%c${prefix} %c${message}`, `color: ${color}`, "color: inherit");
 }
 
 /**
@@ -17,7 +15,7 @@ function log(prefix: string, color: chalk.Chalk, message: string) {
  * @param message The message to log.
  */
 export function info(message: string) {
-  log("info", chalk.blue, message);
+  log("info", "blue", message);
 }
 
 /**
@@ -25,7 +23,7 @@ export function info(message: string) {
  * @param message The message to log.
  */
 export function warn(message: string) {
-  log("warn", chalk.yellow, message);
+  log("warn", "yellow", message);
 }
 
 /**
@@ -33,7 +31,5 @@ export function warn(message: string) {
  * @param message The message to log.
  */
 export function error(message: string) {
-  log("error", chalk.red, message);
+  log("error", "red", message);
 }
-
-export default { info, warn, error };

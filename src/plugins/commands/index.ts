@@ -1,4 +1,4 @@
-import config from "config";
+import { config } from "~/config.ts";
 
 import fs from "node:fs/promises";
 
@@ -21,21 +21,23 @@ async function getCommands(): Promise<Command[]> {
   for (const file of commandFiles) {
     const modName = file.replace(".ts", "");
     if (modName === "index") continue;
-    commands.push((await import(`./${modName}`)).default);
+    commands.push((await import(`./${modName}.ts`)).default);
   }
   return commands;
 }
 
 function registerChatHandler(bot: Bot, commands: Command[]): void {
   const handler = (username: string, message: string) => {
-    if (username === bot.username) {
+    if (username === bot.username || !message.startsWith(config.plugins.commands.prefix)) {
       return;
     }
 
     message = message.replace(config.plugins.commands.prefix, "");
 
     const args = message.split(" ");
-    const command = commands.find((c) => c.name === args[0] || c.aliases?.includes(args[0]));
+    const command = commands.find(
+      (c) => c.name === args[0] || c.aliases?.includes(args[0]),
+    );
     if (command) command.execute(bot, args.slice(1), username);
   };
 

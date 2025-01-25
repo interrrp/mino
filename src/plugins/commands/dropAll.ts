@@ -1,7 +1,7 @@
-import config from "config";
+import { config } from "~/config.ts";
 
-import { Command } from "@/plugins/commands";
-import { sleep } from "@/utils/common";
+import { Command } from "~/plugins/commands/index.ts";
+import { sleep } from "~/utils.ts";
 
 export default {
   name: "drop-all",
@@ -12,7 +12,7 @@ export default {
       const itemStack = bot.inventory.slots[item];
       if (itemStack) {
         await bot.tossStack(itemStack);
-        await sleep(config.plugins.commands.dropAll.delay);
+        await sleep(config.plugins.commands.dropAll.delayMillis);
       }
     }
   },

@@ -4,8 +4,8 @@
  */
 import mineflayer from "mineflayer";
 
-import { MotherOptions } from "@/src/plugins/motherPlugin";
-import PvpPlugin from "@/src/plugins/pvp/PvpPlugin";
+import { MotherOptions } from "~/plugins/mother.ts";
+import { PvpPlugin } from "~/plugins/pvp/plugin.ts";
 
 declare module "mineflayer" {
   interface Bot {

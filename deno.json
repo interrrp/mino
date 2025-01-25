@@ -1,0 +1,22 @@
+{
+  "tasks": {
+    "dev": "deno run -A --watch src/main.ts",
+    "start": "deno run -A src/main.ts"
+  },
+
+  "fmt": {
+    "lineWidth": 100
+  },
+
+  "imports": {
+    "minecraft-data": "npm:minecraft-data@^3.83.1",
+    "prismarine-entity": "npm:prismarine-entity@^2.5.0",
+    "prismarine-item": "npm:prismarine-item@^1.16.0",
+    "vec3": "npm:vec3@^0.1.10",
+    "~/": "./src/",
+    "@std/toml": "jsr:@std/toml@^1.0.2",
+    "mineflayer": "npm:mineflayer@^4.25.0",
+    "mineflayer-pathfinder": "npm:mineflayer-pathfinder@^2.4.5",
+    "mineflayer-pvp": "npm:mineflayer-pvp@^1.3.2"
+  }
+}

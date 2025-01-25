@@ -1,11 +1,11 @@
-import config from "config";
+import { config } from "~/config.ts";
 
 import { Bot } from "mineflayer";
 import { Movements } from "mineflayer-pathfinder";
 
-import logger from "@/logger";
-import startBot from "@/startBot";
-import { sleep } from "@/utils/common";
+import * as logger from "~/logger.ts";
+import { startBot } from "~/bot.ts";
+import { sleep } from "~/utils.ts";
 
 /**
  * This plugin is used to handle events that are not specific to any other
@@ -20,27 +20,28 @@ export default function corePlugin(bot: Bot): void {
   loadPathfinderMovements(bot);
 
   bot.once("spawn", () => handleSpawn(bot));
-  bot.on("kicked", async (reason) => await handleKick(bot, reason));
+  bot.on("kicked", handleKick);
 }
 
 function handleSpawn(bot: Bot): void {
   logger.info(`Spawned at ${bot.entity.position.rounded()}`);
 }
 
-// prettier-ignore
 type KickReason =
   | { type: "string"; value: string }
-  | { type: "compound"; value: { translate: { type: "string", value: string } } }
+  | {
+    type: "compound";
+    value: { translate: { type: "string"; value: string } };
+  }
   | string;
 
 /**
  * Handles when the bot gets kicked.
  *
- * @param bot The bot.
  * @param reason The reason for the kick.
  * @param loggedIn Whether the bot was logged in when kicked.
  */
-async function handleKick(bot: Bot, reason: KickReason): Promise<void> {
+async function handleKick(reason: KickReason): Promise<void> {
   if (typeof reason !== "string") {
     reason = reason.type === "compound" ? reason.value.translate.value : reason.value;
   }
@@ -57,8 +58,8 @@ async function handleKick(bot: Bot, reason: KickReason): Promise<void> {
 async function reconnectOnKick(): Promise<void> {
   const reconnectOnKick = config.plugins.core.reconnectOnKick;
   if (reconnectOnKick.enabled) {
-    logger.info(`Reconnecting in ${reconnectOnKick.delay}ms`);
-    await sleep(reconnectOnKick.delay);
+    logger.info(`Reconnecting in ${reconnectOnKick.delayMillis}ms`);
+    await sleep(reconnectOnKick.delayMillis);
 
     await startBot();
   }

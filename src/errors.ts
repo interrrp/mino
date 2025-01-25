@@ -1,6 +1,6 @@
-import logger from "@/logger";
+import * as logger from "~/logger.ts";
 
-export default function handleError(error: Error): void {
+export function handleError(error: Error): void {
   if (error.message.includes("unsupported/unknown protocol version")) {
     logger.error(
       "Unsupported protocol version. This is most likely due to the server" +

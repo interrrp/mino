@@ -1,18 +1,31 @@
 /**
- * mineflayer-mother - A plugin for mineflayer that makes your bot do MLG.
+ * `mineflayer-mother` - A plugin for mineflayer that makes your bot do MLG.
  *
  * @author MakkusuOtaku <https://github.com/MakkusuOtaku>
  */
-import config from "config";
+
+import { config } from "~/config.ts";
 
 import getMinecraftData from "minecraft-data";
 import mineflayer from "mineflayer";
-import vec3 from "vec3";
+import { Vec3 } from "vec3";
 
-import { sleep } from "@/utils/common";
+import { sleep } from "~/utils.ts";
 
-type BoatType = "oak_boat" | "spruce_boat" | "birch_boat" | "jungle_boat" | "acacia_boat" | "dark_oak_boat";
-type MlgBlockType = "water_bucket" | "slime_block" | "sweet_berries" | "cobweb" | "web" | "hay_block";
+type BoatType =
+  | "oak_boat"
+  | "spruce_boat"
+  | "birch_boat"
+  | "jungle_boat"
+  | "acacia_boat"
+  | "dark_oak_boat";
+type MlgBlockType =
+  | "water_bucket"
+  | "slime_block"
+  | "sweet_berries"
+  | "cobweb"
+  | "web"
+  | "hay_block";
 type VehicleType = "Boat" | "Donkey" | "Horse" | "Minecart";
 
 export type MotherOptions = {
@@ -24,7 +37,27 @@ export type MotherOptions = {
 };
 
 export default function motherPlugin(bot: mineflayer.Bot) {
-  bot.mother = { ...(config.plugins.mother as MotherOptions), doingMLG: false };
+  bot.mother = {
+    boats: [
+      "oak_boat",
+      "spruce_boat",
+      "birch_boat",
+      "jungle_boat",
+      "acacia_boat",
+      "dark_oak_boat",
+    ],
+    mlgBlocks: [
+      "water_bucket",
+      "slime_block",
+      "sweet_berries",
+      "cobweb",
+      "web",
+      "hay_block",
+    ],
+    vehicles: ["Boat", "Donkey", "Horse", "Minecart"],
+    doingMLG: false,
+    ...config.plugins.mother,
+  };
   bot.mother.doingMLG = false;
 
   bot.on("move", async () => {
@@ -71,9 +104,12 @@ async function mlg(bot: mineflayer.Bot) {
     await bot.look(bot.entity.yaw, -Math.PI / 2, true);
     const reference = bot.blockAtCursor(5);
     if (reference && bot.heldItem) {
-      if (bot.heldItem.name.endsWith("_bucket") || bot.mother.boats.includes(bot.heldItem.name as BoatType))
+      if (
+        bot.heldItem.name.endsWith("_bucket") ||
+        bot.mother.boats.includes(bot.heldItem.name as BoatType)
+      ) {
         await bot.activateItem();
-      else await bot.placeBlock(reference, vec3(0, 1, 0));
+      } else await bot.placeBlock(reference, new Vec3(0, 1, 0));
     }
     bot.look(bot.entity.yaw, 0);
   } catch (err) {
