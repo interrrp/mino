@@ -8,7 +8,7 @@ amount = 5
 prefix = "Mino"
 
 [server]
-host = "100.100.1.1"
+host = "127.0.0.1"
 port = 25565
 version = "1.20.1"
 
