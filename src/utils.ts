@@ -1,7 +1,3 @@
-/**
- * @file Common utility functions that are not related to Minecraft.
- */
-
 import { Bot, Player } from "mineflayer";
 
 /**
