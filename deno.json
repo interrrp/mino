@@ -4,6 +4,8 @@
     "start": "deno run -A src/main.ts"
   },
 
+  "compilerOptions": { "types": ["./src/mineflayer.d.ts"] },
+
   "fmt": {
     "lineWidth": 100
   },
