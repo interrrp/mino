@@ -3,8 +3,12 @@ username = "Mino"
 password = ""
 brand = "Mino"
 
+[swarm]
+amount = 5
+prefix = "Mino"
+
 [server]
-host = "127.0.0.1"
+host = "100.100.1.1"
 port = 25565
 version = "1.20.1"
 
@@ -42,35 +46,35 @@ prefix = "mino "
 dropAll.delayMillis = 100
 goTo.rangeBlocks = 2
 flirt.lines = [
-  "Are you a block of diamonds? Because you're gorgeous and valuable.",
-  "Is your name Steve? Because you just mined my heart.",
-  "Are you a redstone torch? Because you're activating my sticky piston.",
-  "Do you have a map? Because I keep getting lost in your eyes.",
-  "Are you a creeper? Because you just blew me away.",
-  "Is it hot in this Nether? Or is it just you?",
-  "Are you a fence? Because I can't get over you.",
-  "Do you have a shovel? Because I'm digging you.",
-  "Are you a chest? Because I could stare at you for hours.",
-  "Is your name Enderman? Because I can't stop looking at you.",
-  "Do you have a pickaxe? Because you're a real gem.",
-  "Are you a furnace? Because you're turning me on.",
-  "Is your name Herobrine? Because you're hauntingly beautiful.",
-  "Do you have a bucket? Because I'm falling for you like a waterfall.",
-  "Are you a beacon? Because you light up my world.",
-  "Is your skin made of diamonds? Because I find you to be quite precious.",
-  "Do you have a crafting table? Because I'd like to craft a future with you.",
-  "Are you a slime ball? Because I find you irresistible.",
-  "Is your name Alex? Because you're a blocky babe.",
-  "Do you have a bow? Because I'm drawn to you.",
-  "Are you a mushroom? Because you're a fungi to be with.",
-  "Is your name Notch? Because you're a god among blocks.",
-  "Do you have a fishing rod? Because I'm hooked on you.",
-  "Are you a spider? Because I'm caught in your web.",
-  "Is your name Diamond? Because you're the hardest thing I've ever fallen for.",
-  "Do you have a bed? Because I want to lie in it with you forever.",
-  "Are you a chicken? Because you're making my heart cluck.",
-  "Is your name Steve? Because you're my perfect block.",
-  "Do you have a sword? Because you're cutting through my heart.",
-  "Are you a beacon? Because you shine brighter than the sun in Minecraft.",
-  "Is your name Alex? Because you're a blocky beauty.",
+    "Are you a block of diamonds? Because you're gorgeous and valuable.",
+    "Is your name Steve? Because you just mined my heart.",
+    "Are you a redstone torch? Because you're activating my sticky piston.",
+    "Do you have a map? Because I keep getting lost in your eyes.",
+    "Are you a creeper? Because you just blew me away.",
+    "Is it hot in this Nether? Or is it just you?",
+    "Are you a fence? Because I can't get over you.",
+    "Do you have a shovel? Because I'm digging you.",
+    "Are you a chest? Because I could stare at you for hours.",
+    "Is your name Enderman? Because I can't stop looking at you.",
+    "Do you have a pickaxe? Because you're a real gem.",
+    "Are you a furnace? Because you're turning me on.",
+    "Is your name Herobrine? Because you're hauntingly beautiful.",
+    "Do you have a bucket? Because I'm falling for you like a waterfall.",
+    "Are you a beacon? Because you light up my world.",
+    "Is your skin made of diamonds? Because I find you to be quite precious.",
+    "Do you have a crafting table? Because I'd like to craft a future with you.",
+    "Are you a slime ball? Because I find you irresistible.",
+    "Is your name Alex? Because you're a blocky babe.",
+    "Do you have a bow? Because I'm drawn to you.",
+    "Are you a mushroom? Because you're a fungi to be with.",
+    "Is your name Notch? Because you're a god among blocks.",
+    "Do you have a fishing rod? Because I'm hooked on you.",
+    "Are you a spider? Because I'm caught in your web.",
+    "Is your name Diamond? Because you're the hardest thing I've ever fallen for.",
+    "Do you have a bed? Because I want to lie in it with you forever.",
+    "Are you a chicken? Because you're making my heart cluck.",
+    "Is your name Steve? Because you're my perfect block.",
+    "Do you have a sword? Because you're cutting through my heart.",
+    "Are you a beacon? Because you shine brighter than the sun in Minecraft.",
+    "Is your name Alex? Because you're a blocky beauty.",
 ]

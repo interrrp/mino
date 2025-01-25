@@ -6,6 +6,10 @@ export interface Config {
     password: string;
     brand: string;
   };
+  swarm: {
+    amount: number;
+    prefix: number;
+  };
   server: {
     host: string;
     port: number;

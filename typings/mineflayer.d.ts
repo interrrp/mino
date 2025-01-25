@@ -9,6 +9,7 @@ import { PvpPlugin } from "~/plugins/pvp/plugin.ts";
 
 declare module "mineflayer" {
   interface Bot {
+    i: number;
     options: mineflayer.BotOptions;
     pvp: PvpPlugin;
     mother: MotherOptions & { doingMLG: boolean };

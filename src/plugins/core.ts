@@ -20,11 +20,11 @@ export default function corePlugin(bot: Bot): void {
   loadPathfinderMovements(bot);
 
   bot.once("spawn", () => handleSpawn(bot));
-  bot.on("kicked", handleKick);
+  bot.on("kicked", (reason) => handleKick(bot, reason));
 }
 
 function handleSpawn(bot: Bot): void {
-  logger.info(`Spawned at ${bot.entity.position.rounded()}`);
+  logger.info(`${bot.i}: Spawned at ${bot.entity.position.rounded()}`);
 }
 
 type KickReason =
@@ -41,7 +41,7 @@ type KickReason =
  * @param reason The reason for the kick.
  * @param loggedIn Whether the bot was logged in when kicked.
  */
-async function handleKick(reason: KickReason): Promise<void> {
+async function handleKick(bot: Bot, reason: KickReason): Promise<void> {
   if (typeof reason !== "string") {
     reason = reason.type === "compound" ? reason.value.translate.value : reason.value;
   }
@@ -52,16 +52,16 @@ async function handleKick(reason: KickReason): Promise<void> {
     logger.warn(`Kicked from server: "${reason}"`);
   }
 
-  await reconnectOnKick();
+  await reconnectOnKick(bot);
 }
 
-async function reconnectOnKick(): Promise<void> {
+async function reconnectOnKick(bot: Bot): Promise<void> {
   const reconnectOnKick = config.plugins.core.reconnectOnKick;
   if (reconnectOnKick.enabled) {
     logger.info(`Reconnecting in ${reconnectOnKick.delayMillis}ms`);
     await sleep(reconnectOnKick.delayMillis);
 
-    await startBot();
+    await startBot(bot.i);
   }
 }
 

@@ -11,11 +11,11 @@ import corePlugin from "~/plugins/core.ts";
 import motherPlugin from "~/plugins/mother.ts";
 import pvpPlugin from "~/plugins/pvp/index.ts";
 
-export function startBot() {
-  logger.info("Starting");
+export function startBot(i: number) {
+  logger.info(`${i}: Starting`);
 
   const options = {
-    username: config.bot.username,
+    username: config.bot.username + i,
     password: config.bot.password,
     brand: config.bot.brand,
     host: config.server.host,
@@ -23,6 +23,7 @@ export function startBot() {
   };
   const bot = createBot(options);
   bot.options = options;
+  bot.i = i;
 
   bot.on("error", handleError);
 

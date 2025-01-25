@@ -10,4 +10,6 @@ console.log(
   "color: blue",
 );
 
-startBot();
+for (let i = 1; i <= config.swarm.amount; i++) {
+  startBot(i);
+}
